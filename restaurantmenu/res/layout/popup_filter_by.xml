@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="550dp"
+    android:layout_height="800dp"
+    android:background="@drawable/border_large"
+    android:orientation="vertical"
+    android:gravity="right"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin">
+	
+    <Button
+	 	android:id="@+id/waiterButton"
+	    style="@android:style/Widget.Holo.Button"
+	    android:layout_width="wrap_content"
+	    android:layout_height="70dp"
+	    android:layout_marginRight="10dp"
+	    android:clickable="true"
+	    android:padding="10dp"
+	   	android:drawablePadding="10dp"
+	    android:drawableRight="@android:drawable/ic_popup_reminder"
+	    android:text="@string/call_waiter"
+	    android:textColor="#000080"
+	    android:textStyle="bold"
+	    android:typeface="serif"
+	    android:textAppearance="?android:attr/textAppearanceLarge" />
+    
+   <LinearLayout
+	    android:id="@+id/searchLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginRight="10dp"
+	    android:gravity="center_vertical"
+	    android:orientation="horizontal" >
+	
+		<TextView
+	    	android:id="@+id/searchView"
+	       	android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:padding="10dp"
+	        android:text="@string/search_with_colon"
+	        android:textColor="#000080"
+	        android:textStyle="bold"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	     
+	    <EditText
+		    android:id="@+id/searchEditText"
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:ems="10"
+		    android:inputType="text"
+		    android:drawablePadding="10dp"
+	        android:drawableRight="@android:drawable/ic_menu_search" >
+
+        	<requestFocus />
+    	</EditText>
+
+	</LinearLayout>
+	
+   	<LinearLayout
+	    android:id="@+id/priceLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="30dp"
+	    android:layout_marginRight="10dp"
+	    android:gravity="center_vertical"
+	    android:orientation="horizontal" >
+	    
+   		<TextView
+   		    android:id="@+id/maxPriceView"
+	       	android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="19dp"
+	        android:text="@string/max_price"
+	        android:textColor="#000080"
+	        android:textStyle="bold"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+   		
+   		<SeekBar
+            android:id="@+id/priceSeekBar"
+            android:layout_width="290dp"
+            android:layout_marginLeft="10dp"
+            android:layout_height="wrap_content"         
+            android:max="100" >
+        </SeekBar>
+        
+   		<TextView
+   		    android:id="@+id/priceValueView"
+	       	android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:text="@string/price_val"
+	        android:textColor="#000080"
+	        android:textStyle="bold"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+   	</LinearLayout>
+        
+   	<LinearLayout
+	    android:id="@+id/likesLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="30dp"
+	    android:layout_marginRight="10dp"
+	    android:gravity="center_vertical"
+	    android:orientation="horizontal" >
+	    
+   		<TextView
+   		    android:id="@+id/maxLikesView"
+	       	android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="19dp"
+	        android:text="@string/max_likes"
+	        android:textColor="#000080"
+	        android:textStyle="bold"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+   		
+   		<SeekBar
+            android:id="@+id/likesSeekBar"
+            android:layout_width="290dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"         
+            android:max="100" >
+        </SeekBar>
+        
+   		<TextView
+   		    android:id="@+id/likesValueView"
+	       	android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="10dp"
+	        android:clickable="true"
+	        android:text="@string/likes_val"
+	        android:textColor="#000080"
+	        android:textStyle="bold"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+   	</LinearLayout>
+   	
+   	<LinearLayout 
+   	    android:id="@+id/checkBoxLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="30dp"
+	    android:layout_marginLeft="40dp"
+	    android:layout_marginRight="10dp"
+	    android:orientation="horizontal" >
+   	    
+   	    <LinearLayout 
+   	        android:id="@+id/dietLayout"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:orientation="vertical" >
+		
+			<TextView
+		       	android:id="@+id/dietFilterView"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/filter_diet"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="#000080"
+		        android:typeface="serif" />
+		                            
+		    <CheckBox
+				android:id="@+id/glutenCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/gluten_free"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/dairyCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/dairy_free"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/lactoseCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/lactose_free"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/lowLactoseCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/low_lactose"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/vegetarianCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/vegetarian"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/veganCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/vegan"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+                     	        
+   	    </LinearLayout>
+   	    
+   	    <LinearLayout 
+   	        android:id="@+id/spicinessAndTypeLayout"
+	    	android:layout_width="wrap_content"
+	    	android:layout_height="wrap_content"
+	    	android:layout_marginLeft="100dp"
+	    	android:orientation="vertical" >
+		
+			<TextView
+		       	android:id="@+id/spicinessFilterView"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/filter_spiciness"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="#000080"
+		        android:typeface="serif" />
+		                            
+		    <CheckBox
+				android:id="@+id/noneCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/none"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/mildCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/mild"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/mediumCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/medium_spiciness"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/hotCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/hot"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <TextView
+		       	android:id="@+id/typeFilterView"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/filter_type"
+		        android:layout_marginTop="20dp"
+		        android:textAppearance="?android:attr/textAppearanceLarge"
+		        android:textColor="#000080"
+		        android:typeface="serif" />
+		                            
+		    <CheckBox
+				android:id="@+id/thinCrispyCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/thin_crispy"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/specialeThinCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/speciale_thin"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+		    <CheckBox
+				android:id="@+id/panPizzaCheckBox"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="10dp"
+				android:text="@string/pan_pizza"
+				android:textAppearance="?android:attr/textAppearanceMedium"
+		        android:textColor="#000080"
+		        android:typeface="serif"
+				android:checked="false" />
+		    
+   	    </LinearLayout>
+   	    
+   	</LinearLayout>
+   	
+   	<LinearLayout
+   	    android:id="@+id/buttonLayout"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:layout_marginRight="10dp"
+	    android:gravity="center_vertical"
+	    android:orientation="horizontal" >
+   	    
+   	    <Button
+		 	android:id="@+id/okButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="120dp"
+		    android:layout_height="70dp"
+		    android:layout_marginRight="10dp"
+		    android:clickable="true"
+		    android:padding="10dp"
+		    android:text="@string/ok"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+   	    
+   	    <Button
+		 	android:id="@+id/cancelButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="120dp"
+		    android:layout_height="70dp"
+		    android:layout_marginRight="10dp"
+		    android:clickable="true"
+		    android:padding="10dp"
+		    android:text="@string/cancel"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+   	    
+   	    <Button
+		 	android:id="@+id/clearAllButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="120dp"
+		    android:layout_height="70dp"
+		    android:clickable="true"
+		    android:padding="10dp"
+		    android:text="@string/clear_all"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+   	    
+   	</LinearLayout>
+   
+</LinearLayout>

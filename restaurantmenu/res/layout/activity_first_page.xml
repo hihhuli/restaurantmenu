@@ -1,0 +1,135 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#D2B48C"
+    android:orientation="vertical"
+    tools:context=".FirstPageActivity" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="175dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/welcomeTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/welcome_to"
+            android:textStyle="bold"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/pizzeriaTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/pizzeria_restaurant"
+            android:textStyle="bold"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+        <TextView
+            android:id="@+id/menuTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:text="@string/menu"
+            android:textStyle="bold"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+        
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/pizza"
+            android:contentDescription="@string/pizza_desc" />
+        
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="50dp"
+          android:gravity="center_vertical"
+          android:orientation="horizontal" >
+        	
+        	<TextView 
+        	    android:id="@+id/languageTextView"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:layout_marginRight="15dp"
+            	android:text="@string/language"
+            	android:textColor="#000080"
+            	android:typeface="serif"
+            	android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        	<ImageView
+        	    android:id="@+id/finnishImageButton"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:contentDescription="@string/flag_desc"
+        	    android:src="@drawable/english" />
+
+        	<ImageView
+        	    android:id="@+id/englishImageButton"
+        	    android:layout_width="wrap_content"
+        	    android:layout_height="wrap_content"
+        	    android:layout_marginLeft="10dp"
+        	    android:layout_marginRight="100dp"
+        	    android:contentDescription="@string/flag_desc"
+        	    android:src="@drawable/finnish" />
+
+       	</LinearLayout>
+
+      <Button
+          android:id="@+id/startMenuButton"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="20dp"
+          android:text="@string/start"
+          android:textColor="#000080"
+          android:typeface="serif"
+          android:drawableRight="@drawable/next_button"
+          android:drawablePadding="10dp"
+          android:onClick="startMenuClicked" />
+      
+    </LinearLayout>
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal" >
+      	
+        <TextView 
+            android:id="@+id/tableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/table_num"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <TextView 
+            android:id="@+id/seatTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="@string/place_num"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    </LinearLayout>
+
+</LinearLayout>
