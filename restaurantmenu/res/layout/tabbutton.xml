@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Button xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/tabButton"
+	style="@android:style/Widget.Holo.Button.Borderless"
+    android:layout_width="110dp"
+    android:layout_height="43dp"
+    android:clickable="true"
+    android:textColor="#000080"
+    android:textStyle="bold"
+    android:typeface="serif"
+    android:textAppearance="?android:attr/textAppearanceLarge" />
