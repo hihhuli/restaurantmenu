@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	    android:id="@+id/smallItemLayout"
+	    android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal"
+	    android:background="@drawable/border_large"
+	    android:clickable="true">
+	    
+	    <TextView 
+	        android:id="@+id/itemTitleView"
+	        android:layout_width="245dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginLeft="10dp"
+	        android:layout_marginBottom="20dp"
+	        android:textColor="#000080"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	    
+	     <TextView 
+	        android:id="@+id/itemDietsView"
+	        android:layout_width="110dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginBottom="20dp"
+	       	android:textColor="#000080"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+	     
+	     <TextView 
+	        android:id="@+id/itemPriceView"
+	        android:layout_width="150dp"
+	        android:layout_height="wrap_content"
+	        android:layout_marginTop="20dp"
+	        android:layout_marginBottom="20dp"
+	        android:gravity="right"
+	       	android:textColor="#000080"
+	        android:typeface="serif"
+	        android:textAppearance="?android:attr/textAppearanceLarge" />
+</LinearLayout>

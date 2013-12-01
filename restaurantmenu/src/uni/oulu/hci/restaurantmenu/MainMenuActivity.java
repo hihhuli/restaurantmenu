@@ -83,7 +83,7 @@ public class MainMenuActivity extends TabActivity {
         	}
         	tabButton.setText(title);
         	Intent intent = new Intent(this, TabMenuActivity.class);
-        	intent.putExtra("map", data.get(title));
+        	intent.putExtra("data", data.get(title));
         	spec.setIndicator(tabButton).setContent(intent);
         	tabHost.addTab(spec);
         }
