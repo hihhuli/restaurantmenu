@@ -25,4 +25,58 @@
             android:layout_height="match_parent"
 			android:orientation="vertical" />
 	</LinearLayout>
+	
+    <LinearLayout
+		android:id="@+id/buttonLayout2"
+		android:layout_width="fill_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="890dp"
+		android:layout_marginLeft="20dp"
+		android:gravity="center_vertical"
+		android:orientation="horizontal" >
+		
+		<Button
+		    android:id="@+id/languagesButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="70dp"
+		    android:layout_marginLeft="20dp"
+		    android:clickable="true"
+		    android:drawablePadding="10dp"
+		    android:drawableLeft="@drawable/previous_button"
+		    android:text="@string/to_languages"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    android:onClick="languagesClicked" />
+		
+		<Button
+		    android:id="@+id/myOrderButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="70dp"
+		    android:layout_marginLeft="20dp"
+		    android:clickable="true"
+		    android:text="@string/my_order"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+		
+		<Button
+		    android:id="@+id/checkoutButton"
+		    style="@android:style/Widget.Holo.Button"
+		    android:layout_width="wrap_content"
+		    android:layout_height="70dp"
+		    android:layout_marginLeft="20dp"
+		    android:clickable="true"
+		    android:drawablePadding="10dp"
+		    android:drawableRight="@drawable/next_button"
+		    android:text="@string/checkout"
+		    android:textColor="#000080"
+		    android:textStyle="bold"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+	 </LinearLayout>
 </TabHost>

@@ -1,5 +1,7 @@
 package uni.oulu.hci.restaurantmenu;
 
+import java.util.HashMap;
+
 import android.os.Bundle;
 import android.app.TabActivity;
 import android.content.Intent;
@@ -18,8 +20,34 @@ public class MainMenuActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        
-        final TabHost tabHost = getTabHost();
+        createTabHost();
+        ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+        ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
+    }
+
+    private HashMap<String, HashMap<String, String>> createMenuData() {
+    	HashMap<String, HashMap<String, String>> data = new HashMap<String, HashMap<String, String>>();
+    	return data;
+    }
+    
+    
+    public void languagesClicked(final View view) {
+        setResult(RESULT_OK, this.getIntent());
+        finish();
+    }
+
+	public void checkoutClicked(final View view) {
+	        // should be active after there are dishes or drinks that have been paid
+	        // launch activity payment options
+	}
+	
+	public void myOrderClicked(final View view) {
+	        // should be active when there are dishes or drinks added to order
+	        // launch popup_my_order
+	}
+    
+    private void createTabHost() {
+    	final TabHost tabHost = getTabHost();
         TabSpec startersTab = tabHost.newTabSpec("Starters");
         TabSpec pizzasTab = tabHost.newTabSpec("Pizzas");
         TabSpec pastasTab= tabHost.newTabSpec("Pastas");
@@ -49,10 +77,6 @@ public class MainMenuActivity extends TabActivity {
                 tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.hilighted)); // selected
         }});
     }
-
-    public static void setTabColor(TabHost tabhost) {
-
-    }
     
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -60,19 +84,4 @@ public class MainMenuActivity extends TabActivity {
         getMenuInflater().inflate(R.menu.first_page, menu);
         return true;
     }
-    
-    public void languagesClicked(final View view) {
-        setResult(RESULT_OK, this.getIntent());
-        finish();
-    }
-
-	public void checkoutClicked(final View view) {
-	        // should be active after there are dishes or drinks that have been paid
-	        // launch activity payment options
-	}
-	
-	public void myOrderClicked(final View view) {
-	        // should be active when there are dishes or drinks added to order
-	        // launch popup_my_order
-	}
 }
