@@ -25,4 +25,16 @@ public class MainMenuActivity extends Activity {
     	finish();
     }
     
+    public void checkoutClicked(final View view) {
+    	// should be active after there are dishes or drinks that have been paid
+    	// launch activity payment options
+    }
+    
+    public void myOrderClicked(final View view) {
+    	// should be active when there are dishes or drinks added to order
+    	// launch popup_my_order
+    }
+    
+    
+    
 }
