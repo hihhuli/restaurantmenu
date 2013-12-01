@@ -17,6 +17,8 @@ public class TabMenuActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menutab);
+        ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+        ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
     }
     
     @Override
