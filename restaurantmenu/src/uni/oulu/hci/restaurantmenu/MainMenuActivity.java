@@ -1,5 +1,6 @@
 package uni.oulu.hci.restaurantmenu;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.os.Bundle;
@@ -20,13 +21,38 @@ public class MainMenuActivity extends TabActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
-        createTabHost();
+        final String[] titles = {"Starters", "Pizzas", "Pastas", "Burgers", "Drinks"};
+        final HashMap<String, ArrayList<HashMap<String, String>>> data = createMenuData(titles);
+        createTabHost(data, titles);
         ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
         ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
     }
 
-    private HashMap<String, HashMap<String, String>> createMenuData() {
-    	HashMap<String, HashMap<String, String>> data = new HashMap<String, HashMap<String, String>>();
+    private HashMap<String, ArrayList<HashMap<String, String>>> createMenuData(final String[] titles) {
+    	HashMap<String, ArrayList<HashMap<String, String>>> data = new HashMap<String, ArrayList<HashMap<String, String>>>();
+    	String[][][] data_arr = new String[][][]{
+    			{
+	    			{"1. Lumache della casa", "LL, (L, G)", "9.40 € / 15.20 €"},
+	    			{"2. Instanta al pollo", "L, (G)", "9.20 €"},
+	    			{"3. Insalata al salmone", "D, (G)", "7.90 €"},
+	    			{"4. Salad table", "", "3.60 € / 9.20 €"},
+	    			{"5. Sweet potato soup", "LL, (G)", "7.90 €"}
+    			},
+    			{}, {}, {}, {}
+    	};
+    	
+    	final String[] keys = {"title", "diets", "price"};
+    	for (int i = 0; i < titles.length; i++) {
+    		ArrayList<HashMap<String, String>> tab_data = new ArrayList<HashMap<String, String>>();
+    		for (int j = 0; j < data_arr[i].length; j++) {
+        		HashMap<String, String> map = new HashMap<String, String>();
+    			for (int k = 0; k < keys.length; k++) {
+    				map.put(keys[k], data_arr[i][j][k]);
+    			}
+    			tab_data.add(map);
+    		}
+    		data.put(titles[i], tab_data);
+    	}
     	return data;
     }
     
@@ -46,24 +72,19 @@ public class MainMenuActivity extends TabActivity {
 	        // launch popup_my_order
 	}
     
-    private void createTabHost() {
+    private void createTabHost(final HashMap<String, ArrayList<HashMap<String, String>>> data, String[] titles) {
     	final TabHost tabHost = getTabHost();
-        TabSpec startersTab = tabHost.newTabSpec("Starters");
-        TabSpec pizzasTab = tabHost.newTabSpec("Pizzas");
-        TabSpec pastasTab= tabHost.newTabSpec("Pastas");
-        TabSpec burgersTab = tabHost.newTabSpec("Burgers");
-        TabSpec drinksTab= tabHost.newTabSpec("Drinks");
-        
-        TabSpec[] specs = {startersTab, pizzasTab, pastasTab, burgersTab, drinksTab};
-        
-        for (TabSpec spec : specs) {
+     
+        for (String title : titles) {
+        	TabSpec spec = tabHost.newTabSpec(title);
         	Button tabButton = (Button)getLayoutInflater().inflate(R.layout.tabbutton, null);
-        	String tag = spec.getTag();
-        	if (tag.equals("Starters")) {
+        	if (title.equals("Starters")) {
         		tabButton.setBackgroundColor(getResources().getColor(R.color.hilighted));
         	}
-        	tabButton.setText(tag);
-        	spec.setIndicator(tabButton).setContent(new Intent(this, TabMenuActivity.class));
+        	tabButton.setText(title);
+        	Intent intent = new Intent(this, TabMenuActivity.class);
+        	intent.putExtra("map", data.get(title));
+        	spec.setIndicator(tabButton).setContent(intent);
         	tabHost.addTab(spec);
         }
         
