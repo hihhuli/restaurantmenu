@@ -26,4 +26,16 @@ public class FirstPageActivity extends Activity {
     	Intent intent = new Intent(this, MainMenuActivity.class);
     	startActivityForResult(intent, 0);
     }
+    
+    public void selectEnglishClicked(final View view) {
+    	// change text on first page to english
+    	// change some language selection variable accordingly
+    	// language selection variable sent as extra in intent to MainMenuActivity
+    }
+    
+    public void selectFinnishClicked(final View view) {
+    	// change text on first page to finnish
+    	// change some language selection variable accordingly
+    	// language selection variable sent as extra in intent to MainMenuActivity
+    }
 }
