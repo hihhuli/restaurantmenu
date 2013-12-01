@@ -35,6 +35,13 @@ public class MainMenuActivity extends Activity {
     	// launch popup_my_order
     }
     
+    public void callWaiterClicked(final View view) {
+    	// would send a message to a waiter to come by, not implemented here
+    	// feedback to tell that a request was sent
+    }
     
+    public void searchClicked(final View view) {
+    	// launch search popup
+    }
     
 }
