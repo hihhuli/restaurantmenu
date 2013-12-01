@@ -57,20 +57,7 @@ public class MainMenuActivity extends TabActivity {
     }
     
     
-    public void languagesClicked(final View view) {
-        setResult(RESULT_OK, this.getIntent());
-        finish();
-    }
 
-	public void checkoutClicked(final View view) {
-	        // should be active after there are dishes or drinks that have been paid
-	        // launch activity payment options
-	}
-	
-	public void myOrderClicked(final View view) {
-	        // should be active when there are dishes or drinks added to order
-	        // launch popup_my_order
-	}
     
     private void createTabHost(final HashMap<String, ArrayList<HashMap<String, String>>> data, String[] titles) {
     	final TabHost tabHost = getTabHost();
@@ -105,4 +92,45 @@ public class MainMenuActivity extends TabActivity {
         getMenuInflater().inflate(R.menu.first_page, menu);
         return true;
     }
+
+    
+    @Override
+    public void onSaveInstanceState(Bundle savedInstanceState) {
+        
+    	// To save the state of an activity onSaveInstanceState must be overridden to allow for more information to be saved
+    	
+    	// Save the user's current game state
+        //savedInstanceState.putInt(STATE_SCORE, mCurrentScore);
+        //savedInstanceState.putInt(STATE_LEVEL, mCurrentLevel);
+        
+        // Always call the superclass so it can save the view hierarchy state
+        //super.onSaveInstanceState(savedInstanceState);
+    }
+    
+    public void languagesClicked(final View view) {
+    	setResult(RESULT_OK, this.getIntent());
+    	finish();
+    }
+    
+    public void checkoutClicked(final View view) {
+    	// should be active after there are dishes or drinks that have been paid
+    	// launch activity payment options
+    	//Intent intent = new Intent(this, CheckoutActivity.class);
+    	//startActivityForResult(intent, 0);
+    }
+    
+    public void myOrderClicked(final View view) {
+    	// should be active when there are dishes or drinks added to order
+    	// launch popup_my_order
+    }
+    
+    public void callWaiterClicked(final View view) {
+    	// would send a message to a waiter to come by, not implemented here
+    	// feedback to tell that a request was sent
+    }
+    
+    public void searchClicked(final View view) {
+    	// launch search popup
+    }
+    
 }
