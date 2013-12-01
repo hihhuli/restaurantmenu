@@ -32,7 +32,7 @@ public class MainMenuActivity extends TabActivity {
         	Button tabButton = (Button)getLayoutInflater().inflate(R.layout.tabbutton, null);
         	String tag = spec.getTag();
         	if (tag.equals("Starters")) {
-        		tabButton.setBackgroundResource(R.color.hilighted);
+        		tabButton.setBackgroundColor(getResources().getColor(R.color.hilighted));
         	}
         	tabButton.setText(tag);
         	spec.setIndicator(tabButton).setContent(new Intent(this, TabMenuActivity.class));
@@ -44,10 +44,9 @@ public class MainMenuActivity extends TabActivity {
         	public void onTabChanged(String tabId) {
                 for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
                 {
-                	Log.d("hep", "hep");
-                    tabHost.getTabWidget().getChildAt(i).setBackgroundResource(R.color.default_color); //unselected
+                    tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.default_color)); //unselected
                 }
-                tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundResource(R.color.hilighted); // selected
+                tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.hilighted)); // selected
         }});
     }
 

@@ -17,76 +17,7 @@
         <TabWidget
             android:id="@android:id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" >
-
-            <LinearLayout
-                android:id="@+id/tabbar"
-                style="?android:attr/buttonBarStyle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal" >
-
-                <Button
-                    android:id="@+id/startersButton"
-                    style="@android:style/Widget.Holo.Button.Borderless"
-                    android:layout_width="110dp"
-                    android:layout_height="43dp"
-                    android:clickable="true"
-                    android:text="@string/starters"
-                    android:textColor="#000080"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <Button
-                    android:id="@+id/pizzasButton"
-                    style="@android:style/Widget.Holo.Button.Borderless"
-                    android:layout_width="110dp"
-                    android:layout_height="43dp"
-                    android:clickable="true"
-                    android:text="@string/pizzas"
-                    android:textColor="#000080"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <Button
-                    android:id="@+id/pastasButton"
-                    style="@android:style/Widget.Holo.Button.Borderless"
-                    android:layout_width="110dp"
-                    android:layout_height="43dp"
-                    android:clickable="true"
-                    android:text="@string/pastas"
-                    android:textColor="#000080"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <Button
-                    android:id="@+id/burgersButton"
-                    style="@android:style/Widget.Holo.Button.Borderless"
-                    android:layout_width="110dp"
-                    android:layout_height="43dp"
-                    android:clickable="true"
-                    android:text="@string/burgers"
-                    android:textColor="#000080"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-
-                <Button
-                    android:id="@+id/drinksButton"
-                    style="@android:style/Widget.Holo.Button.Borderless"
-                    android:layout_width="110dp"
-                    android:layout_height="43dp"
-                    android:clickable="true"
-                    android:text="@string/drinks"
-                    android:textColor="#000080"
-                    android:textStyle="bold"
-                    android:typeface="serif"
-                    android:textAppearance="?android:attr/textAppearanceLarge" />
-            </LinearLayout>
-        </TabWidget>
+            android:layout_height="wrap_content" />
             
        <FrameLayout
             android:id="@android:id/tabcontent"
