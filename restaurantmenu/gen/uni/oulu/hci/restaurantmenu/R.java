@@ -181,9 +181,10 @@ public final class R {
         public static final int activity_first_page=0x7f030000;
         public static final int activity_main_menu=0x7f030001;
         public static final int activity_main_menu_expanded=0x7f030002;
-        public static final int activity_payment_options=0x7f030003;
-        public static final int popup_filter_by=0x7f030004;
-        public static final int popup_my_order=0x7f030005;
+        public static final int activity_menutab=0x7f030003;
+        public static final int activity_payment_options=0x7f030004;
+        public static final int popup_filter_by=0x7f030005;
+        public static final int popup_my_order=0x7f030006;
     }
     public static final class menu {
         public static final int first_page=0x7f070000;
