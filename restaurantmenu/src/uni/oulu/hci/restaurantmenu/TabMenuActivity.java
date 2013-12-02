@@ -9,9 +9,13 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.app.TabActivity;
 import android.content.Intent;
+import android.content.Context;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.View;
+import android.view.LayoutInflater;
 import android.util.Log;
+import android.widget.PopupWindow;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -20,6 +24,8 @@ import android.widget.TabHost.TabSpec;
 import android.widget.TextView;
 
 public class TabMenuActivity extends Activity {
+	
+	private PopupWindow popup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +67,20 @@ public class TabMenuActivity extends Activity {
     public void searchClicked(final View view) {
     	// launch search popup
     	Log.d("TabMenuActivity","Search button clicked.");
+    	
+    	LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	View popupView = vi.inflate(R.layout.popup_filter_by, null);
+    	
+    	popup = new PopupWindow(popupView);
+    	popup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
+    	popup.setFocusable(true);
+    	popup.update(510, 900);
+    }
+    
+    public void cancelClicked(final View view) {
+    	// launch search popup
+    	Log.d("TabMenuActivity","Cancel button clicked.");
+    	
+    	popup.dismiss();
     }
 }
