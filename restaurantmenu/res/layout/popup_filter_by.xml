@@ -361,6 +361,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
+		    android:onClick="okSearchClicked"
 		    android:textAppearance="?android:attr/textAppearanceLarge" />
    	    
    	    <Button
@@ -375,7 +376,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
-		    android:onClick="cancelClicked"
+		    android:onClick="cancelSearchClicked"
 		    android:textAppearance="?android:attr/textAppearanceLarge" />
    	    
    	    <Button
@@ -389,6 +390,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
+		    android:onClick="clearSearchClicked"
 		    android:textAppearance="?android:attr/textAppearanceLarge" />
    	    
    	</LinearLayout>

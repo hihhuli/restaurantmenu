@@ -25,7 +25,8 @@ import android.widget.TextView;
 
 public class TabMenuActivity extends Activity {
 	
-	private PopupWindow popup;
+	private PopupWindow searchpopup;
+	
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,16 +72,30 @@ public class TabMenuActivity extends Activity {
     	LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     	View popupView = vi.inflate(R.layout.popup_filter_by, null);
     	
-    	popup = new PopupWindow(popupView);
-    	popup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
-    	popup.setFocusable(true);
-    	popup.update(510, 900);
+    	searchpopup = new PopupWindow(popupView);
+    	searchpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
+    	searchpopup.setFocusable(true);
+    	searchpopup.update(510, 900);
     }
     
-    public void cancelClicked(final View view) {
-    	// launch search popup
+    public void cancelSearchClicked(final View view) {
+    	// close search popup with cancel
     	Log.d("TabMenuActivity","Cancel button clicked.");
     	
-    	popup.dismiss();
+    	searchpopup.dismiss();
+    }
+    
+    public void okSearchClicked(final View view) {
+    	// close search popup with ok
+    	Log.d("TabMenuActivity","Ok button clicked.");
+    	
+    	searchpopup.dismiss();
+    }
+    
+    public void clearSearchClicked(final View view) {
+    	// close search popup with ok
+    	Log.d("TabMenuActivity","Clear button clicked.");
+    	
+
     }
 }

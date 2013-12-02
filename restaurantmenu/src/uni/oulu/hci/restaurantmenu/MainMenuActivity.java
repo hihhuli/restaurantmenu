@@ -5,17 +5,23 @@ import java.util.HashMap;
 
 import android.os.Bundle;
 import android.app.TabActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.PopupWindow;
 import android.widget.TabHost;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
 public class MainMenuActivity extends TabActivity {
+	
+	private PopupWindow myorderpopup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -124,6 +130,14 @@ public class MainMenuActivity extends TabActivity {
     	// should be active when there are dishes or drinks added to order
     	// launch popup_my_order
     	Log.d("MainMenuActivity","My order button clicked.");
+    	
+    	LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    	View popupView = vi.inflate(R.layout.popup_my_order, null);
+    	
+    	myorderpopup = new PopupWindow(popupView);
+    	myorderpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
+    	myorderpopup.setFocusable(true);
+    	myorderpopup.update(510, 900);
     }
     
 }
