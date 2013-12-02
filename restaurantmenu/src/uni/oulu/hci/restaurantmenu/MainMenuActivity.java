@@ -1,12 +1,11 @@
 package uni.oulu.hci.restaurantmenu;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.Serializable;
 
-import android.os.Bundle;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -22,52 +21,44 @@ import android.widget.TabHost.TabSpec;
 public class MainMenuActivity extends TabActivity {
     
     private PopupWindow myorderpopup;
-
+    private MenuDataSource datasource;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         final String[] titles = {"Starters", "Pizzas", "Pastas", "Burgers", "Drinks"};
-        final HashMap<String, ArrayList<HashMap<String, String>>> data = createMenuData(titles);
-        createTabHost(data, titles);
+        
+        datasource = new MenuDataSource(this);
+        datasource.open();
+        
+        datasource.deleteAllMenuItems();
+        datasource.createMenuItem("Lumache della casa", "LL, (L, G)", 9.4, "Pizzas");
+        datasource.createMenuItem("Instanta al pollo", "L, (G)", 9.2, "Pizzas");
+        datasource.createMenuItem("Insalata al salmone", "D, (G)", 7.9, "Pizzas");
+        datasource.createMenuItem("Salad table", "", 3.6, "Starters");
+        datasource.createMenuItem("Sweet potato soup", "LL, (G)", 7.9, "Starters");
+        
+        createTabHost(titles);
         ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
         ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
     }
-
-    private HashMap<String, ArrayList<HashMap<String, String>>> createMenuData(final String[] titles) {
-        HashMap<String, ArrayList<HashMap<String, String>>> data = new HashMap<String, ArrayList<HashMap<String, String>>>();
-        String[][][] data_arr = new String[][][]{
-                {
-                    {"1. Lumache della casa", "LL, (L, G)", "9.40 € / 15.20 €"},
-                    {"2. Instanta al pollo", "L, (G)", "9.20 €"},
-                    {"3. Insalata al salmone", "D, (G)", "7.90 €"},
-                    {"4. Salad table", "", "3.60 € / 9.20 €"},
-                    {"5. Sweet potato soup", "LL, (G)", "7.90 €"}
-                },
-                {}, {}, {}, {}
-        };
-        
-        final String[] keys = {"title", "diets", "price"};
-        for (int i = 0; i < titles.length; i++) {
-            ArrayList<HashMap<String, String>> tab_data = new ArrayList<HashMap<String, String>>();
-            for (int j = 0; j < data_arr[i].length; j++) {
-                HashMap<String, String> map = new HashMap<String, String>();
-                for (int k = 0; k < keys.length; k++) {
-                    map.put(keys[k], data_arr[i][j][k]);
-                }
-                tab_data.add(map);
-            }
-            data.put(titles[i], tab_data);
-        }
-        return data;
+    
+    @Override
+    protected void onResume() {
+        datasource.open();
+        super.onResume();
     }
     
+    @Override
+    protected void onPause() {
+        datasource.close();
+        super.onPause();
+    }
     
-
-    
-    private void createTabHost(final HashMap<String, ArrayList<HashMap<String, String>>> data, String[] titles) {
+    private void createTabHost(String[] titles) {
         final TabHost tabHost = getTabHost();
-     
+        
         for (String title : titles) {
             TabSpec spec = tabHost.newTabSpec(title);
             Button tabButton = (Button)getLayoutInflater().inflate(R.layout.tabbutton, null);
@@ -76,7 +67,7 @@ public class MainMenuActivity extends TabActivity {
             }
             tabButton.setText(title);
             Intent intent = new Intent(this, TabMenuActivity.class);
-            intent.putExtra("data", data.get(title));
+            intent.putExtra("data", (Serializable)datasource.getMenuItemsByCategory(title));
             spec.setIndicator(tabButton).setContent(intent);
             tabHost.addTab(spec);
         }
@@ -89,7 +80,7 @@ public class MainMenuActivity extends TabActivity {
                     tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.default_color)); //unselected
                 }
                 tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.hilighted)); // selected
-        }});
+            }});
     }
     
     @Override
@@ -98,7 +89,6 @@ public class MainMenuActivity extends TabActivity {
         getMenuInflater().inflate(R.menu.first_page, menu);
         return true;
     }
-
     
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -139,5 +129,4 @@ public class MainMenuActivity extends TabActivity {
         myorderpopup.setFocusable(true);
         myorderpopup.update(510, 900);
     }
-    
 }
