@@ -11,6 +11,7 @@ import android.app.TabActivity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -49,5 +50,16 @@ public class TabMenuActivity extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.first_page, menu);
         return true;
+    }
+    
+    public void callWaiterClicked(final View view) {
+    	// would send a message to a waiter to come by, not implemented here
+    	// feedback to tell that a request was sent
+    	Log.d("TabMenuActivity","Call waiter button clicked.");
+    }
+    
+    public void searchClicked(final View view) {
+    	// launch search popup
+    	Log.d("TabMenuActivity","Search button clicked.");
     }
 }

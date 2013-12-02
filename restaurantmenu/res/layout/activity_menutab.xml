@@ -28,6 +28,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
+		    android:onClick="searchClicked"
 		    android:textAppearance="?android:attr/textAppearanceMedium" />
 		
 		<View
@@ -49,6 +50,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
+		    android:onClick="callWaiterClicked"
 		    android:textAppearance="?android:attr/textAppearanceMedium" />
 	
 	</LinearLayout>

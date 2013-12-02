@@ -117,20 +117,13 @@ public class MainMenuActivity extends TabActivity {
     	// launch activity payment options
     	//Intent intent = new Intent(this, CheckoutActivity.class);
     	//startActivityForResult(intent, 0);
+    	Log.d("MainMenuActivity","Checkout button clicked.");
     }
     
     public void myOrderClicked(final View view) {
     	// should be active when there are dishes or drinks added to order
     	// launch popup_my_order
-    }
-    
-    public void callWaiterClicked(final View view) {
-    	// would send a message to a waiter to come by, not implemented here
-    	// feedback to tell that a request was sent
-    }
-    
-    public void searchClicked(final View view) {
-    	// launch search popup
+    	Log.d("MainMenuActivity","My order button clicked.");
     }
     
 }
