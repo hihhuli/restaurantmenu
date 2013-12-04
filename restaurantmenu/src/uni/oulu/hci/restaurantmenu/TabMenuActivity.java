@@ -10,32 +10,50 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.GridLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-public class TabMenuActivity extends Activity {
+public class TabMenuActivity extends Activity implements ScrollViewListener {
     
     private PopupWindow searchpopup;
     private List<MenuItem> menuItems;
+    private ViewGroup expandedItem;
     
     @SuppressWarnings("unchecked")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menutab);
-        menuItems = (List<MenuItem>) getIntent().getSerializableExtra("data");
+        
+        this.menuItems = (List<MenuItem>) getIntent().getSerializableExtra("data");
+        this.searchpopup = null;
+        this.expandedItem = null;
+        
+        ((ObservableScrollView) findViewById(R.id.scrollView)).setScrollViewListener(this);
         populateScrollView();
     }
     
     private void populateScrollView() {
-        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
+    	ViewGroup item;
+    	LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
         
-        for(MenuItem menuItem : menuItems) {
-            LinearLayout item = (LinearLayout)getLayoutInflater().inflate(R.layout.smallitem, null);
+        for (int i = 0; i < this.menuItems.size(); i++) {
+        	MenuItem menuItem = this.menuItems.get(i);
+        	if (i == 1) {
+        		item = (GridLayout)getLayoutInflater().inflate(R.layout.largeitem, null);
+        		this.expandedItem = item;
+        		((TextView)item.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
+        		((TextView)item.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
+        		((TextView)item.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
+        	} else {
+        		item = (LinearLayout)getLayoutInflater().inflate(R.layout.smallitem, null);
+                ((TextView)item.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()));
+                ((TextView)item.findViewById(R.id.itemDietsView)).setText(menuItem.getDiets());
+        	}
             ((TextView)item.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
-            ((TextView)item.findViewById(R.id.itemDietsView)).setText(menuItem.getDiets());
-            ((TextView)item.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             params.setMargins(0, 0, 0, 10);
             item.setLayoutParams(params);
@@ -63,30 +81,33 @@ public class TabMenuActivity extends Activity {
         LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = vi.inflate(R.layout.popup_filter_by, null);
         
-        searchpopup = new PopupWindow(popupView);
-        searchpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
-        searchpopup.setFocusable(true);
-        searchpopup.update(570, 900);
+        this.searchpopup = new PopupWindow(popupView);
+        this.searchpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
+        this.searchpopup.setFocusable(true);
+        this.searchpopup.update(570, 900);
     }
     
     public void cancelSearchClicked(final View view) {
         // close search popup with cancel
         Log.d("TabMenuActivity","Cancel button clicked.");
         
-        searchpopup.dismiss();
+        this.searchpopup.dismiss();
     }
     
     public void okSearchClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Ok button clicked.");
         
-        searchpopup.dismiss();
+        this.searchpopup.dismiss();
     }
     
     public void clearSearchClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Clear button clicked.");
-        
-        
     }
+
+	@Override
+	public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
+		Log.d("onScroll", x + " " + y + " " + oldx + " " + oldy);
+	}
 }

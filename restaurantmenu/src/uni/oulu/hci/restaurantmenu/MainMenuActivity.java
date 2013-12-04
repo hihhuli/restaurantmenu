@@ -34,7 +34,62 @@ public class MainMenuActivity extends TabActivity {
         
         dataSource.deleteAllMenuItems();
         
-        dataSource.createMenuItem("Lumache della casa", 
+        dataSource.createMenuItem("1. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("2. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Chicken, fresh salad, pomegranate seeds, olives, marinated paprika and chili mayonnaise", 
+                "Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("3. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("4. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("5. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("6. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -48,6 +103,39 @@ public class MainMenuActivity extends TabActivity {
         dataSource.createMenuItem("Instanta al pollo", 
                 "L, (G)", 
                 9.2, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("7. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("8. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("9. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
                 "Pizzas", 
                 "Description", 
                 "Hot;Mild", 
@@ -124,9 +212,12 @@ public class MainMenuActivity extends TabActivity {
         }
         
         tabHost.setOnTabChangedListener(new OnTabChangeListener(){
-            @Override
+            /**
+             * http://stackoverflow.com/questions/2099959/how-do-i-change-the-background-of-an-android-tab-widget
+             */
+        	@Override
             public void onTabChanged(String tabId) {
-                for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
+                for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
                 {
                     tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.default_color)); //unselected
                 }
@@ -204,8 +295,6 @@ public class MainMenuActivity extends TabActivity {
     public void confirmMyOrderClicked(final View view) {
         // close search popup with ok
         Log.d("MainMenuActivity","Confirm button clicked.");
-        
-        
     }
     
     public void callWaiterClicked(final View view) {
