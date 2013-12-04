@@ -125,8 +125,8 @@ public class MainMenuActivity extends TabActivity {
         View popupView = vi.inflate(R.layout.popup_my_order, null);
         
         myorderpopup = new PopupWindow(popupView);
-        myorderpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
+        myorderpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
         myorderpopup.setFocusable(true);
-        myorderpopup.update(510, 900);
+        myorderpopup.update(570, 900);
     }
 }

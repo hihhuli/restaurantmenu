@@ -64,9 +64,9 @@ public class TabMenuActivity extends Activity {
         View popupView = vi.inflate(R.layout.popup_filter_by, null);
         
         searchpopup = new PopupWindow(popupView);
-        searchpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 10, 60);
+        searchpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
         searchpopup.setFocusable(true);
-        searchpopup.update(510, 900);
+        searchpopup.update(570, 900);
     }
     
     public void cancelSearchClicked(final View view) {
