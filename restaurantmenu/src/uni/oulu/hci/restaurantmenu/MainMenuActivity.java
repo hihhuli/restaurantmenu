@@ -40,8 +40,8 @@ public class MainMenuActivity extends TabActivity {
         datasource.createMenuItem("Sweet potato soup", "LL, (G)", 7.9, "Starters");
         
         createTabHost(titles);
-        ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
-        ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
+        ((Button)findViewById(R.id.myOrderButton)).setEnabled(true);
+        ((Button)findViewById(R.id.checkoutButton)).setEnabled(true);
     }
     
     @Override
@@ -125,8 +125,37 @@ public class MainMenuActivity extends TabActivity {
         View popupView = vi.inflate(R.layout.popup_my_order, null);
         
         myorderpopup = new PopupWindow(popupView);
-        myorderpopup.showAtLocation((View) findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
+        
+        myorderpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
+        
         myorderpopup.setFocusable(true);
         myorderpopup.update(570, 900);
+    }
+    
+    public void closeMyOrderClicked(final View view) {
+        // close search popup with cancel
+        Log.d("MainMenuActivity","Close button clicked.");
+        
+        myorderpopup.dismiss();
+    }
+    
+    public void clearMyOrderClicked(final View view) {
+        // close search popup with ok
+        Log.d("MainMenuActivity","Clear button clicked.");
+        
+        //myorderpopup.dismiss();
+    }
+    
+    public void confirmMyOrderClicked(final View view) {
+        // close search popup with ok
+        Log.d("MainMenuActivity","Confirm button clicked.");
+        
+        
+    }
+    
+    public void callWaiterClicked(final View view) {
+        // would send a message to a waiter to come by, not implemented here
+        // feedback to tell that a request was sent
+        Log.d("MainMenuActivity","Call waiter button clicked.");
     }
 }
