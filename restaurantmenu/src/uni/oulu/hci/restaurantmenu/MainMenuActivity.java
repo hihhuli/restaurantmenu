@@ -45,9 +45,97 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
+        dataSource.createMenuItem("Lumache della casa2", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa3", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa4", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa5", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa6", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
         dataSource.createMenuItem("Instanta al pollo", 
                 "L, (G)", 
                 9.2, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa7", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa8", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Lumache della casa9", 
+                "LL, (L, G)", 
+                9.4, 
                 "Pizzas", 
                 "Description", 
                 "Hot;Mild", 
@@ -124,9 +212,12 @@ public class MainMenuActivity extends TabActivity {
         }
         
         tabHost.setOnTabChangedListener(new OnTabChangeListener(){
-            @Override
+            /**
+             * http://stackoverflow.com/questions/2099959/how-do-i-change-the-background-of-an-android-tab-widget
+             */
+        	@Override
             public void onTabChanged(String tabId) {
-                for(int i=0;i<tabHost.getTabWidget().getChildCount();i++)
+                for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
                 {
                     tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.default_color)); //unselected
                 }

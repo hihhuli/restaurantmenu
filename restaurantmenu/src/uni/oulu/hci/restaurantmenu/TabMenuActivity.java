@@ -14,7 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
-public class TabMenuActivity extends Activity {
+public class TabMenuActivity extends Activity implements ScrollViewListener {
     
     private PopupWindow searchpopup;
     private List<MenuItem> menuItems;
@@ -25,6 +25,7 @@ public class TabMenuActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menutab);
         menuItems = (List<MenuItem>) getIntent().getSerializableExtra("data");
+        ((ObservableScrollView) findViewById(R.id.scrollView)).setScrollViewListener(this);
         populateScrollView();
     }
     
@@ -86,7 +87,10 @@ public class TabMenuActivity extends Activity {
     public void clearSearchClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Clear button clicked.");
-        
-        
     }
+
+	@Override
+	public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
+		Log.d("onScroll", x + " " + y + " " + oldx + " " + oldy);
+	}
 }
