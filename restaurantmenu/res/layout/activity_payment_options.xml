@@ -126,6 +126,7 @@
 	        android:textColor="#000080"
 	        android:typeface="serif"
 	        android:drawableLeft="@drawable/previous_button"
+	        android:onClick="backClicked"
 	        android:drawablePadding="10dp" />
 	   	
 	   	<View

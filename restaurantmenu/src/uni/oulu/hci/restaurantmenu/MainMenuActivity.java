@@ -165,6 +165,10 @@ public class MainMenuActivity extends TabActivity {
         //Intent intent = new Intent(this, CheckoutActivity.class);
         //startActivityForResult(intent, 0);
         Log.d("MainMenuActivity","Checkout button clicked.");
+        Log.d("MainMenuActivity","New intent.");
+        Intent intent = new Intent(this, PaymentOptionsActivity.class);
+        Log.d("MainMenuActivity","Starting activity.");
+        startActivityForResult(intent, 0);
     }
     
     public void myOrderClicked(final View view) {

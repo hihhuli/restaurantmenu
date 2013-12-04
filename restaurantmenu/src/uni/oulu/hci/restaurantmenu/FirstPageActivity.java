@@ -4,6 +4,7 @@ package uni.oulu.hci.restaurantmenu;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 
@@ -31,11 +32,13 @@ public class FirstPageActivity extends Activity {
         // change text on first page to english
         // change some language selection variable accordingly
         // language selection variable sent as extra in intent to MainMenuActivity
+    	Log.d("FirstPageActivity","English button clicked.");
     }
     
     public void selectFinnishClicked(final View view) {
         // change text on first page to finnish
         // change some language selection variable accordingly
         // language selection variable sent as extra in intent to MainMenuActivity
+    	Log.d("FirstPageActivity","Finnish button clicked.");
     }
 }
