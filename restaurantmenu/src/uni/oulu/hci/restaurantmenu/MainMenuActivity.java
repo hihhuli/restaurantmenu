@@ -21,6 +21,7 @@ import android.widget.TabHost.TabSpec;
 public class MainMenuActivity extends TabActivity {
     
     private PopupWindow myorderpopup;
+    private PopupWindow corfirmedpopup;
     private MenuDataSource dataSource;
     
     @Override
@@ -295,11 +296,29 @@ public class MainMenuActivity extends TabActivity {
     public void confirmMyOrderClicked(final View view) {
         // close search popup with ok
         Log.d("MainMenuActivity","Confirm button clicked.");
+        LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View popupView = vi.inflate(R.layout.popup_order_confirmed, null);
+        
+        corfirmedpopup = new PopupWindow(popupView);
+        
+        corfirmedpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
+        
+        corfirmedpopup.setFocusable(true);
+        corfirmedpopup.update(570, 900);
     }
     
     public void callWaiterClicked(final View view) {
         // would send a message to a waiter to come by, not implemented here
         // feedback to tell that a request was sent
         Log.d("MainMenuActivity","Call waiter button clicked.");
+    }
+    
+    
+    
+    public void closeOrderSent(final View view) {
+        // close search popup with cancel
+        Log.d("MainMenuActivity","OrderSent popup clicked.");
+        
+        corfirmedpopup.dismiss();
     }
 }

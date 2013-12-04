@@ -46,4 +46,22 @@ public class PaymentOptionsActivity extends Activity {
         setResult(RESULT_OK, this.getIntent());
         finish();
     }
+    
+    public void tabletPayClicked(final View view) {
+        // would send a message to a waiter to come by, not implemented here
+        // feedback to tell that a request was sent
+        Log.d("PaymentOptionsActivity","Tablet button clicked.");
+    }
+    
+    public void phonePayClicked(final View view) {
+        // would send a message to a waiter to come by, not implemented here
+        // feedback to tell that a request was sent
+        Log.d("PaymentOptionsActivity","Phone button clicked.");
+    }
+    
+    public void callWaiterClicked(final View view) {
+        // would send a message to a waiter to come by, not implemented here
+        // feedback to tell that a request was sent
+        Log.d("PaymentOptionsActivity","Call waiter button clicked.");
+    }
 }

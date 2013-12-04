@@ -49,6 +49,7 @@
 	   	        android:textAppearance="?android:attr/textAppearanceLarge"
 	   	        android:textColor="#000080"
 	   	        android:textStyle="bold"
+	   	        android:onClick="tabletPayClicked"
 	   	        android:typeface="serif" />
 	   	     	    
 	   	    <Button
@@ -64,6 +65,7 @@
 	   	        android:textAppearance="?android:attr/textAppearanceLarge"
 	   	        android:textColor="#000080"
 	   	        android:textStyle="bold"
+	   	        android:onClick="phonePayClicked"
 	   	        android:typeface="serif" />
 	   	    
 	   	    <Button
@@ -77,6 +79,7 @@
 			    android:textColor="#000080"
 			    android:textStyle="bold"
 			    android:typeface="serif"
+			    android:onClick="callWaiterClicked"
 			    android:textAppearance="?android:attr/textAppearanceLarge" />
 	
 	    </LinearLayout>

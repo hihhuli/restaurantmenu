@@ -105,5 +105,6 @@
     <string name="nota_bene">(To pay for several people, choose this)</string>
     <string name="back">Back</string>
     <string name="start">Start</string>
+    <string name="orderSent">Your order has been sent to the kitchen.</string>
 
 </resources>
