@@ -24,6 +24,7 @@
 	    android:textColor="#000080"
 	    android:textStyle="bold"
 	    android:typeface="serif"
+	    android:onClick="callWaiterClicked"
 	    android:textAppearance="?android:attr/textAppearanceLarge" />
 	   
     <TextView 
@@ -306,6 +307,7 @@
    	        android:textAppearance="?android:attr/textAppearanceLarge"
    	        android:textColor="#000080"
    	        android:textStyle="bold"
+   	        android:onClick="closeMyOrderClicked"
    	        android:typeface="serif" />
    	     	    
    	    <Button
@@ -321,6 +323,7 @@
    	        android:textAppearance="?android:attr/textAppearanceLarge"
    	        android:textColor="#000080"
    	        android:textStyle="bold"
+   	        android:onClick="clearMyOrderClicked"
    	        android:typeface="serif" />
    	    
    	    <Button
@@ -334,6 +337,7 @@
 		    android:textColor="#000080"
 		    android:textStyle="bold"
 		    android:typeface="serif"
+		    android:onClick="confirmMyOrderClicked"
 		    android:textAppearance="?android:attr/textAppearanceLarge" />
 
    	</LinearLayout>

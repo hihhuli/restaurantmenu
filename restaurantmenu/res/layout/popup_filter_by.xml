@@ -23,6 +23,7 @@
 	    android:textColor="#000080"
 	    android:textStyle="bold"
 	    android:typeface="serif"
+	    android:onClick="callWaiterClicked"
 	    android:textAppearance="?android:attr/textAppearanceLarge" />
     
    <LinearLayout
