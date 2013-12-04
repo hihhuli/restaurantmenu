@@ -19,7 +19,14 @@ public class MenuDataSource implements Serializable {
             MySQLiteHelper.COLUMN_TITLE,
             MySQLiteHelper.COLUMN_DIETS,
             MySQLiteHelper.COLUMN_PRICE,
-            MySQLiteHelper.COLUMN_CATEGORY};
+            MySQLiteHelper.COLUMN_CATEGORY,
+            MySQLiteHelper.COLUMN_DESCRIPTION,
+            MySQLiteHelper.COLUMN_SPICINESS,
+            MySQLiteHelper.COLUMN_IMAGE,
+            MySQLiteHelper.COLUMN_INGREDIENTS,
+            MySQLiteHelper.COLUMN_INGREDIENT_OPTIONS,
+            MySQLiteHelper.COLUMN_DIET_OPTIONS,
+            MySQLiteHelper.COLUMN_SIZE};
     
     public MenuDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -33,12 +40,31 @@ public class MenuDataSource implements Serializable {
         dbHelper.close();
     }
     
-    public MenuItem createMenuItem(String name, String diets, double price, String category) {
+    public MenuItem createMenuItem(String name,
+            String diets,
+            double price,
+            String category,
+            String description,
+            String spiciness,
+            String image,
+            String ingredients,
+            String ingredientOptions,
+            String dietOptions,
+            String size) {
         ContentValues values = new ContentValues();
+        
         values.put(MySQLiteHelper.COLUMN_TITLE, name);
         values.put(MySQLiteHelper.COLUMN_DIETS, diets);
         values.put(MySQLiteHelper.COLUMN_PRICE, price);
         values.put(MySQLiteHelper.COLUMN_CATEGORY, category);
+        values.put(MySQLiteHelper.COLUMN_DESCRIPTION, description);
+        values.put(MySQLiteHelper.COLUMN_SPICINESS, spiciness);
+        values.put(MySQLiteHelper.COLUMN_IMAGE, image);
+        values.put(MySQLiteHelper.COLUMN_INGREDIENTS, ingredients);
+        values.put(MySQLiteHelper.COLUMN_INGREDIENT_OPTIONS, ingredientOptions);
+        values.put(MySQLiteHelper.COLUMN_DIET_OPTIONS, dietOptions);
+        values.put(MySQLiteHelper.COLUMN_SIZE, size);
+        
         long insertId = database.insert(MySQLiteHelper.TABLE_MENU, null,
                 values);
         Cursor cursor = database.query(MySQLiteHelper.TABLE_MENU,
@@ -102,6 +128,13 @@ public class MenuDataSource implements Serializable {
         menuItem.setDiets(cursor.getString(2));
         menuItem.setPrice(cursor.getInt(3));
         menuItem.setCategory(cursor.getString(4));
+        menuItem.setDescription(cursor.getString(5));
+        menuItem.setSpiciness(cursor.getString(6));
+        menuItem.setImage(cursor.getString(7));
+        menuItem.setIngredients(cursor.getString(8));
+        menuItem.setIngredientOptions(cursor.getString(9));
+        menuItem.setDietOptions(cursor.getString(10));
+        menuItem.setSize(cursor.getString(11));
         return menuItem;
     }
 }

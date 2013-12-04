@@ -21,7 +21,7 @@ import android.widget.TabHost.TabSpec;
 public class MainMenuActivity extends TabActivity {
     
     private PopupWindow myorderpopup;
-    private MenuDataSource datasource;
+    private MenuDataSource dataSource;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,15 +29,66 @@ public class MainMenuActivity extends TabActivity {
         setContentView(R.layout.activity_main_menu);
         final String[] titles = {"Starters", "Pizzas", "Pastas", "Burgers", "Drinks"};
         
-        datasource = new MenuDataSource(this);
-        datasource.open();
+        dataSource = new MenuDataSource(this);
+        dataSource.open();
         
-        datasource.deleteAllMenuItems();
-        datasource.createMenuItem("Lumache della casa", "LL, (L, G)", 9.4, "Pizzas");
-        datasource.createMenuItem("Instanta al pollo", "L, (G)", 9.2, "Pizzas");
-        datasource.createMenuItem("Insalata al salmone", "D, (G)", 7.9, "Pizzas");
-        datasource.createMenuItem("Salad table", "", 3.6, "Starters");
-        datasource.createMenuItem("Sweet potato soup", "LL, (G)", 7.9, "Starters");
+        dataSource.deleteAllMenuItems();
+        
+        dataSource.createMenuItem("Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Instanta al pollo", 
+                "L, (G)", 
+                9.2, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Insalata al salmone", 
+                "D, (G)", 
+                7.9, 
+                "Pizzas", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Salad table", 
+                "", 
+                3.6, 
+                "Starters", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("Sweet potato soup", 
+                "LL, (G)", 
+                7.9, 
+                "Starters", 
+                "Description", 
+                "Hot;Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
         
         createTabHost(titles);
         ((Button)findViewById(R.id.myOrderButton)).setEnabled(true);
@@ -46,13 +97,13 @@ public class MainMenuActivity extends TabActivity {
     
     @Override
     protected void onResume() {
-        datasource.open();
+        dataSource.open();
         super.onResume();
     }
     
     @Override
     protected void onPause() {
-        datasource.close();
+        dataSource.close();
         super.onPause();
     }
     
@@ -67,7 +118,7 @@ public class MainMenuActivity extends TabActivity {
             }
             tabButton.setText(title);
             Intent intent = new Intent(this, TabMenuActivity.class);
-            intent.putExtra("data", (Serializable)datasource.getMenuItemsByCategory(title));
+            intent.putExtra("data", (Serializable)dataSource.getMenuItemsByCategory(title));
             spec.setIndicator(tabButton).setContent(intent);
             tabHost.addTab(spec);
         }

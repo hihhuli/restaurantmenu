@@ -7,6 +7,13 @@ public class MenuItem {
     private String diets;
     private double price;
     private String category;
+    private String description;
+    private String spiciness;
+    private String image;
+    private String ingredients;
+    private String ingredientOptions;
+    private String dietOptions;
+    private String size;
     
     public long getId() {
         return id;
@@ -46,6 +53,62 @@ public class MenuItem {
     
     public void setCategory(String category) {
         this.category = category;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    public void setDescription(String description) {
+        this.description = description;
+    }
+    
+    public String getSpiciness() {
+        return spiciness;
+    }
+    
+    public void setSpiciness(String spiciness) {
+        this.spiciness = spiciness;
+    }
+    
+    public String getImage() {
+        return image;
+    }
+    
+    public void setImage(String image) {
+        this.image = image;
+    }
+    
+    public String getIngredients() {
+        return ingredients;
+    }
+    
+    public void setIngredients(String ingredients) {
+        this.ingredients = ingredients;
+    }
+    
+    public String getIngredientOptions() {
+        return ingredientOptions;
+    }
+    
+    public void setIngredientOptions(String ingredientOptions) {
+        this.ingredientOptions = ingredientOptions;
+    }
+    
+    public String getDietOptions() {
+        return dietOptions;
+    }
+    
+    public void setDietOptions(String dietOptions) {
+        this.dietOptions = dietOptions;
+    }
+    
+    public String getSize() {
+        return size;
+    }
+    
+    public void setSize(String size) {
+        this.size = size;
     }
     
     @Override
