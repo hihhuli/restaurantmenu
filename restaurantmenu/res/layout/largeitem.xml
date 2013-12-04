@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:id="@+id/expandedItemLayout"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginLeft="15dp"
+	android:layout_marginTop="10dp"
+	android:columnCount="2"
+	android:rowCount="2"
+	android:orientation="horizontal"
+	android:background="@drawable/border_large"
+	android:clickable="true">
+
+    <ImageView
+		android:id="@+id/itemImageView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10dp"
+		android:layout_marginTop="10dp"
+		android:src="@drawable/salad"
+		android:layout_column="0"
+     	android:layout_row="0"
+		android:contentDescription="@string/item_img_desc" />
+
+    <LinearLayout
+		android:id="@+id/itemDescriptionLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_column="1"
+		android:layout_row="0"
+		android:layout_marginLeft="10dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical" >
+
+        <TextView
+		    android:id="@+id/itemTitleView"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceLarge"
+		    android:textColor="#000080"
+		    android:typeface="serif" />
+
+        <TextView
+		    android:id="@+id/itemDescriptionView"
+		    android:layout_width="230dp"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textColor="#000080"
+		    android:typeface="serif" />
+    </LinearLayout>
+
+    <LinearLayout
+		android:id="@+id/itemInfoLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_column="0"
+		android:layout_row="1"
+		android:layout_marginLeft="20dp"
+		android:layout_marginTop="10dp"
+		android:orientation="vertical" >
+        
+        <TextView
+		    android:id="@+id/itemDietsView"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textColor="#000080"
+		    android:typeface="serif" />
+        
+        <TextView
+		    android:id="@+id/itemSpicinessView"
+		    android:layout_width="wrap_content"
+		    android:layout_height="wrap_content"
+		    android:layout_marginTop="10dp"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textColor="#000080"
+		    android:typeface="serif" />
+           
+        <Button
+			android:id="@+id/likeButton"
+			style="@android:style/Widget.Holo.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="10dp"
+			android:clickable="true"
+			android:text="@string/item_likes"
+			android:drawablePadding="10dp"
+			android:drawableRight="@drawable/like"
+			android:textColor="#000080"
+			android:typeface="serif"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+    </LinearLayout>
+    
+   	<LinearLayout
+		android:id="@+id/itemButtonLayout"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_column="1"
+		android:layout_row="1"
+		android:orientation="vertical" >
+        
+        <TextView
+		    android:id="@+id/inOrderView"
+		    android:layout_width="wrap_content"
+		    android:layout_height="35dp"
+		    android:text="@string/in_order"
+		    android:layout_marginBottom="5dp"
+		    android:layout_marginLeft="10dp"
+		    android:textAppearance="?android:attr/textAppearanceMedium"
+		    android:textColor="#000080"
+		    android:typeface="serif" />
+        
+        <Button
+			android:id="@+id/addToOrderButton"
+			style="@android:style/Widget.Holo.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:clickable="true"
+			android:text="@string/add_to_order"
+			android:drawablePadding="10dp"
+			android:drawableLeft="@android:drawable/ic_input_add"
+			android:textColor="#000080"
+			android:typeface="serif"
+	       	android:textAppearance="?android:attr/textAppearanceMedium" />
+           
+        <Button
+			android:id="@+id/removeFromOrderButton"
+			style="@android:style/Widget.Holo.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="35dp"
+			android:clickable="true"
+			android:text="@string/remove_from_order"
+			android:drawablePadding="10dp"
+			android:drawableLeft="@android:drawable/ic_delete"
+			android:textColor="#000080"
+			android:typeface="serif"
+			android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <Button
+            android:id="@+id/personalChoicesButton"
+			style="@android:style/Widget.Holo.Button.Borderless"
+			android:layout_width="wrap_content"
+			android:layout_height="35dp"
+			android:layout_marginBottom="10dp"
+			android:clickable="true"
+			android:text="@string/personal_choices"
+			android:drawablePadding="10dp"
+			android:drawableRight="@drawable/down_arrow"
+			android:textColor="#000080"
+			android:typeface="serif"
+			android:textAppearance="?android:attr/textAppearanceMedium"/>
+        
+	</LinearLayout>
+    
+ </GridLayout>

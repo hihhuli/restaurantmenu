@@ -34,7 +34,7 @@ public class MainMenuActivity extends TabActivity {
         
         dataSource.deleteAllMenuItems();
         
-        dataSource.createMenuItem("Lumache della casa", 
+        dataSource.createMenuItem("1. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -45,7 +45,18 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa2", 
+        dataSource.createMenuItem("2. Lumache della casa", 
+                "LL, (L, G)", 
+                9.4, 
+                "Pizzas", 
+                "Chicken, fresh salad, pomegranate seeds, olives, marinated paprika and chili mayonnaise", 
+                "Mild", 
+                "pizza.png", 
+                "ingredient1;ingredient2", 
+                "ingredient1;ingredient2;ingredient3;ingredient4", 
+                "lactose-free", 
+                "big;small");
+        dataSource.createMenuItem("3. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -56,7 +67,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa3", 
+        dataSource.createMenuItem("4. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -67,7 +78,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa4", 
+        dataSource.createMenuItem("5. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -78,18 +89,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa5", 
-                "LL, (L, G)", 
-                9.4, 
-                "Pizzas", 
-                "Description", 
-                "Hot;Mild", 
-                "pizza.png", 
-                "ingredient1;ingredient2", 
-                "ingredient1;ingredient2;ingredient3;ingredient4", 
-                "lactose-free", 
-                "big;small");
-        dataSource.createMenuItem("Lumache della casa6", 
+        dataSource.createMenuItem("6. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -111,7 +111,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa7", 
+        dataSource.createMenuItem("7. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -122,7 +122,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa8", 
+        dataSource.createMenuItem("8. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -133,7 +133,7 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small");
-        dataSource.createMenuItem("Lumache della casa9", 
+        dataSource.createMenuItem("9. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Pizzas", 
@@ -291,8 +291,6 @@ public class MainMenuActivity extends TabActivity {
     public void confirmMyOrderClicked(final View view) {
         // close search popup with ok
         Log.d("MainMenuActivity","Confirm button clicked.");
-        
-        
     }
     
     public void callWaiterClicked(final View view) {
