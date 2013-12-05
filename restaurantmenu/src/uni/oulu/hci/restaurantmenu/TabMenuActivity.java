@@ -64,14 +64,18 @@ public class TabMenuActivity extends Activity {
     	scrollViewLayout.addView(view, index);
     }
     
-    private GridLayout getExpandedItemLayout(int index) {
-    	MenuItem menuItem = this.menuItems.get(index);
-    	GridLayout layout = (GridLayout)getLayoutInflater().inflate(R.layout.largeitem, null);
-		
+    private void setItemProperties(ViewGroup layout, MenuItem menuItem) {
     	((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
 		((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
 		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
+        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
+    }
+    
+    private GridLayout getExpandedItemLayout(int index) {
+    	MenuItem menuItem = this.menuItems.get(index);
+    	GridLayout layout = (GridLayout)getLayoutInflater().inflate(R.layout.largeitem, null);
+		setItemProperties(layout, menuItem);
 		
 		return layout;
     }
@@ -79,11 +83,7 @@ public class TabMenuActivity extends Activity {
     private GridLayout getFurtherExpandedItemLayout(int index) {
     	MenuItem menuItem = this.menuItems.get(index);
     	GridLayout layout = (GridLayout)getLayoutInflater().inflate(R.layout.largestitem, null);
-		
-    	((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
-		((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
-		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
-        ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
+    	setItemProperties(layout, menuItem);
 		
 		return layout;
     }
@@ -91,15 +91,27 @@ public class TabMenuActivity extends Activity {
     public void addToOrderClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Add to order clicked.");
-        Button removeButton = ((Button)(((LinearLayout) view.getParent()).findViewById(R.id.removeFromOrderButton)));
+        LinearLayout layout = (LinearLayout) view.getParent();
+        Button removeButton = ((Button)layout.findViewById(R.id.removeFromOrderButton));
+        TextView inOrder = ((TextView)layout.findViewById(R.id.inOrderView));
         removeButton.setVisibility(View.VISIBLE);
+        inOrder.setVisibility(View.VISIBLE);
+    }
+    
+    public void removeFromOrderClicked(final View view) {
+        // close search popup with ok
+        Log.d("TabMenuActivity","Add to order clicked.");
+        LinearLayout layout = (LinearLayout) view.getParent();
+        TextView inOrder = ((TextView)layout.findViewById(R.id.inOrderView));
+        view.setVisibility(View.INVISIBLE);
+        inOrder.setVisibility(View.INVISIBLE);
     }
     
     private LinearLayout getItemLayout(int index) {
     	MenuItem menuItem = this.menuItems.get(index);
     	LinearLayout layout = (LinearLayout)getLayoutInflater().inflate(R.layout.smallitem, null);
     	
-        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()));
+        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
         ((TextView)layout.findViewById(R.id.itemDietsView)).setText(menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         
