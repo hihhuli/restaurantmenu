@@ -69,6 +69,18 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
 		return layout;
     }
     
+    private GridLayout getFurtherExpandedItemLayout(int index) {
+    	MenuItem menuItem = this.menuItems.get(index);
+    	GridLayout layout = (GridLayout)getLayoutInflater().inflate(R.layout.largestitem, null);
+		
+    	((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
+		((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
+		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
+        ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
+		
+		return layout;
+    }
+    
     public void addToOrderClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Add to order clicked.");
@@ -130,11 +142,23 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
         // close search popup with ok
         Log.d("TabMenuActivity","Clear button clicked.");
     }
+    
+    public void personalChoicesOpened(final View view) {
+        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
+        scrollViewLayout.removeViewAt(this.expandedIndex);
+        insertToScrollView(getFurtherExpandedItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
+    }
+    
+    public void personalChoicesClosed(final View view) {
+        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
+        scrollViewLayout.removeViewAt(this.expandedIndex);
+        insertToScrollView(getExpandedItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
+    }
 
     private boolean isVisibleInScrollView(View view, ObservableScrollView scrollView) {
 		Rect scrollBounds = new Rect();
 		scrollView.getHitRect(scrollBounds);
-    	if (view.getLocalVisibleRect(scrollBounds) || scrollBounds.height() < view.getHeight()) {
+    	if (view.getLocalVisibleRect(scrollBounds) /*|| scrollBounds.height() < view.getHeight()*/) {
 		    return true;
 		} else {
 			return false;
@@ -159,11 +183,11 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
 	public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
 		LinearLayout scrollViewLayout = (LinearLayout) scrollView.getChildAt(0);
 		if (this.expandedIndex > 0 && 
-				this.expandedIndex < scrollViewLayout.getChildCount() - 1 &&
-				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 1), scrollView)) {
+				!(this.expandedIndex < scrollViewLayout.getChildCount() - 1 &&
+				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 1), scrollView))) {
 			updateExpandedItem(scrollViewLayout, scrollView);
 		} else if (this.expandedIndex > 1 && 
-				!isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 2), scrollView)) {
+				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 2), scrollView)) {
 			updateExpandedItem(scrollViewLayout, scrollView);
 		}
 	}
