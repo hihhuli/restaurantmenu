@@ -69,6 +69,12 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
 		return layout;
     }
     
+    public void addToOrderClicked(final View view) {
+        // close search popup with ok
+        Log.d("TabMenuActivity","Add to order clicked.");
+        
+    }
+    
     private LinearLayout getItemLayout(int index) {
     	MenuItem menuItem = this.menuItems.get(index);
     	LinearLayout layout = (LinearLayout)getLayoutInflater().inflate(R.layout.smallitem, null);
@@ -128,7 +134,7 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
     private boolean isVisibleInScrollView(View view, ObservableScrollView scrollView) {
 		Rect scrollBounds = new Rect();
 		scrollView.getHitRect(scrollBounds);
-    	if (view.getLocalVisibleRect(scrollBounds)) {
+    	if (view.getLocalVisibleRect(scrollBounds) || scrollBounds.height() < view.getHeight()) {
 		    return true;
 		} else {
 			return false;
@@ -154,10 +160,10 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
 		LinearLayout scrollViewLayout = (LinearLayout) scrollView.getChildAt(0);
 		if (this.expandedIndex > 0 && 
 				this.expandedIndex < scrollViewLayout.getChildCount() - 1 &&
-				!isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 1), scrollView)) {
+				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 1), scrollView)) {
 			updateExpandedItem(scrollViewLayout, scrollView);
 		} else if (this.expandedIndex > 1 && 
-				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 2), scrollView)) {
+				!isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 2), scrollView)) {
 			updateExpandedItem(scrollViewLayout, scrollView);
 		}
 	}
