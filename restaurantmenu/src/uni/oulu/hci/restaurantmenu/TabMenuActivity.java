@@ -12,12 +12,14 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.GridLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
-public class TabMenuActivity extends Activity implements ScrollViewListener {
+public class TabMenuActivity extends Activity {
     
     private PopupWindow searchpopup;
     private List<MenuItem> menuItems;
@@ -31,21 +33,18 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
         
         this.menuItems = (List<MenuItem>) getIntent().getSerializableExtra("data");
         this.searchpopup = null;
-        this.expandedIndex = 1;
-        
-        ((ObservableScrollView) findViewById(R.id.scrollView)).setScrollViewListener(this);
+        this.expandedIndex = 0;
+
         populateScrollView();
     }
     
     private void populateScrollView() {
     	ViewGroup layout;
-        
-        for (int i = 0; i < this.menuItems.size(); i++) {
-        	if (i == 1) {
-        		layout = getExpandedItemLayout(i);
-        	} else {
-        		layout = getItemLayout(i);
-        	}
+    	
+    	layout = getExpandedItemLayout(0);
+    	insertToScrollView(layout, ((LinearLayout)findViewById(R.id.scrollViewLayout)), 0);
+        for (int i = 1; i < this.menuItems.size(); i++) {
+        	layout = getItemLayout(i);
             insertToScrollView(layout, ((LinearLayout)findViewById(R.id.scrollViewLayout)), i);
         }
     }
@@ -143,6 +142,21 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
         Log.d("TabMenuActivity","Clear button clicked.");
     }
     
+    public void itemClicked(final View view) {
+    	ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
+    	LinearLayout scrollViewLayout = (LinearLayout) scrollView.getChildAt(0);
+    	int diff = scrollViewLayout.getChildAt(this.expandedIndex).getHeight() + view.getHeight() + 10;
+    	int index = scrollViewLayout.indexOfChild(view);
+    	
+    	scrollView.setSmoothScrollingEnabled(true);
+		scrollView.smoothScrollTo(0, scrollViewLayout.getChildAt(index).getBottom() - diff);
+    	scrollViewLayout.removeViewAt(this.expandedIndex);
+		insertToScrollView(getItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
+		this.expandedIndex = index;
+		scrollViewLayout.removeViewAt(index);
+		insertToScrollView(getExpandedItemLayout(index), scrollViewLayout, index);
+    }
+    
     public void personalChoicesOpened(final View view) {
         LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
         scrollViewLayout.removeViewAt(this.expandedIndex);
@@ -154,41 +168,4 @@ public class TabMenuActivity extends Activity implements ScrollViewListener {
         scrollViewLayout.removeViewAt(this.expandedIndex);
         insertToScrollView(getExpandedItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
     }
-
-    private boolean isVisibleInScrollView(View view, ObservableScrollView scrollView) {
-		Rect scrollBounds = new Rect();
-		scrollView.getHitRect(scrollBounds);
-    	if (view.getLocalVisibleRect(scrollBounds) /*|| scrollBounds.height() < view.getHeight()*/) {
-		    return true;
-		} else {
-			return false;
-		}
-    }
-    
-    private void updateExpandedItem(LinearLayout scrollViewLayout, ObservableScrollView scrollView) {
-    	int i;
-		for (i = 0; i < scrollViewLayout.getChildCount(); i++) {
-			if (isVisibleInScrollView(scrollViewLayout.getChildAt(i), scrollView)) {
-				break;
-			}
-		}
-    	scrollViewLayout.removeViewAt(this.expandedIndex);
-		insertToScrollView(getItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
-		this.expandedIndex = i + 1;
-		scrollViewLayout.removeViewAt(this.expandedIndex);
-		insertToScrollView(getExpandedItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
-    }
-    
-	@Override
-	public void onScrollChanged(ObservableScrollView scrollView, int x, int y, int oldx, int oldy) {
-		LinearLayout scrollViewLayout = (LinearLayout) scrollView.getChildAt(0);
-		if (this.expandedIndex > 0 && 
-				!(this.expandedIndex < scrollViewLayout.getChildCount() - 1 &&
-				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 1), scrollView))) {
-			updateExpandedItem(scrollViewLayout, scrollView);
-		} else if (this.expandedIndex > 1 && 
-				isVisibleInScrollView(scrollViewLayout.getChildAt(this.expandedIndex - 2), scrollView)) {
-			updateExpandedItem(scrollViewLayout, scrollView);
-		}
-	}
 }

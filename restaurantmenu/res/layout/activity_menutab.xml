@@ -55,13 +55,14 @@
 	
 	</LinearLayout>
 	
-	<uni.oulu.hci.restaurantmenu.ObservableScrollView
+	<ScrollView
 		android:id="@+id/scrollView"
 		android:layout_width="565dp"
 		android:layout_height="720dp"
 		android:layout_marginTop="10dp"
 		android:layout_marginBottom="20dp"
 		android:scrollbars="vertical"
+		android:smoothScrollbar="true"
 		android:scrollbarStyle="outsideOverlay"
 		android:scrollbarAlwaysDrawVerticalTrack="true"
 		android:fadeScrollbars="false"
@@ -75,6 +76,6 @@
 				android:layout_marginRight="10dp"
 				android:orientation="vertical" />
 			
-	</uni.oulu.hci.restaurantmenu.ObservableScrollView>
+	</ScrollView>
 	
 </LinearLayout>

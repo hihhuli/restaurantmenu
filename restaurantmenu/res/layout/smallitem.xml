@@ -5,7 +5,8 @@
 	    android:layout_height="wrap_content"
 	    android:orientation="horizontal"
 	    android:background="@drawable/border_large"
-	    android:clickable="true">
+	    android:clickable="true"
+	    android:onClick="itemClicked">
 	    
 	    <TextView 
 	        android:id="@+id/itemTitleView"
