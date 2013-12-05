@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.GridLayout;
@@ -24,6 +25,8 @@ public class TabMenuActivity extends Activity {
     private PopupWindow searchpopup;
     private List<MenuItem> menuItems;
     private int expandedIndex;
+    private LinearLayout scrollViewLayout;
+    private ScrollView scrollView;
     
     @SuppressWarnings("unchecked")
     @Override
@@ -34,15 +37,20 @@ public class TabMenuActivity extends Activity {
         this.menuItems = (List<MenuItem>) getIntent().getSerializableExtra("data");
         this.searchpopup = null;
         this.expandedIndex = 0;
-
+        this.scrollViewLayout = (LinearLayout) findViewById(R.id.scrollViewLayout);
+        this.scrollView = (ScrollView) findViewById(R.id.scrollView);
+        
+        this.scrollView.setSmoothScrollingEnabled(true);
         populateScrollView();
     }
     
     private void populateScrollView() {
     	ViewGroup layout;
     	
-    	layout = getExpandedItemLayout(0);
-    	insertToScrollView(layout, ((LinearLayout)findViewById(R.id.scrollViewLayout)), 0);
+    	if (this.menuItems.size() > 0) {
+    		layout = getExpandedItemLayout(0);
+        	insertToScrollView(layout, ((LinearLayout)findViewById(R.id.scrollViewLayout)), 0);
+    	}
         for (int i = 1; i < this.menuItems.size(); i++) {
         	layout = getItemLayout(i);
             insertToScrollView(layout, ((LinearLayout)findViewById(R.id.scrollViewLayout)), i);
@@ -83,7 +91,8 @@ public class TabMenuActivity extends Activity {
     public void addToOrderClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Add to order clicked.");
-        
+        Button removeButton = ((Button)(((LinearLayout) view.getParent()).findViewById(R.id.removeFromOrderButton)));
+        removeButton.setVisibility(View.VISIBLE);
     }
     
     private LinearLayout getItemLayout(int index) {
@@ -143,24 +152,22 @@ public class TabMenuActivity extends Activity {
     }
     
     public void itemClicked(final View view) {
-    	ScrollView scrollView = (ScrollView) findViewById(R.id.scrollView);
-    	LinearLayout scrollViewLayout = (LinearLayout) scrollView.getChildAt(0);
     	int diff = scrollViewLayout.getChildAt(this.expandedIndex).getHeight() + view.getHeight() + 10;
     	int index = scrollViewLayout.indexOfChild(view);
     	
-    	scrollView.setSmoothScrollingEnabled(true);
-		scrollView.smoothScrollTo(0, scrollViewLayout.getChildAt(index).getBottom() - diff);
-    	scrollViewLayout.removeViewAt(this.expandedIndex);
-		insertToScrollView(getItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
+		this.scrollView.smoothScrollTo(0, this.scrollViewLayout.getChildAt(index).getBottom() - diff);
+    	this.scrollViewLayout.removeViewAt(this.expandedIndex);
+		insertToScrollView(getItemLayout(this.expandedIndex), this.scrollViewLayout, this.expandedIndex);
 		this.expandedIndex = index;
-		scrollViewLayout.removeViewAt(index);
-		insertToScrollView(getExpandedItemLayout(index), scrollViewLayout, index);
+		this.scrollViewLayout.removeViewAt(index);
+		insertToScrollView(getExpandedItemLayout(index), this.scrollViewLayout, index);
     }
     
     public void personalChoicesOpened(final View view) {
-        LinearLayout scrollViewLayout = (LinearLayout)findViewById(R.id.scrollViewLayout);
-        scrollViewLayout.removeViewAt(this.expandedIndex);
-        insertToScrollView(getFurtherExpandedItemLayout(this.expandedIndex), scrollViewLayout, this.expandedIndex);
+        this.scrollViewLayout.removeViewAt(this.expandedIndex);
+        GridLayout layout = getFurtherExpandedItemLayout(this.expandedIndex);
+        insertToScrollView(layout, this.scrollViewLayout, this.expandedIndex);
+        this.scrollView.smoothScrollTo(0, ((GridLayout)view.getParent().getParent()).getTop() - 40);
     }
     
     public void personalChoicesClosed(final View view) {

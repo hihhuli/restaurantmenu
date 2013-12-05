@@ -23,12 +23,14 @@ public class MainMenuActivity extends TabActivity {
     private PopupWindow myorderpopup;
     private PopupWindow corfirmedpopup;
     private MenuDataSource dataSource;
+    private UserOrder userOrder;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         final String[] titles = {"Starters", "Pizzas", "Pastas", "Burgers", "Drinks"};
+        UserOrder userOrder = new UserOrder();
         
         dataSource = new MenuDataSource(this);
         dataSource.open();
@@ -305,6 +307,7 @@ public class MainMenuActivity extends TabActivity {
             tabButton.setText(title);
             Intent intent = new Intent(this, TabMenuActivity.class);
             intent.putExtra("data", (Serializable)dataSource.getMenuItemsByCategory(title));
+            intent.putExtra("order", (Serializable)userOrder);
             spec.setIndicator(tabButton).setContent(intent);
             tabHost.addTab(spec);
         }

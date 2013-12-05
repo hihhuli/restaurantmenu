@@ -232,6 +232,7 @@
 			android:drawableLeft="@android:drawable/ic_delete"
 			android:textColor="#000080"
 			android:typeface="serif"
+			android:visibility="invisible"
 			android:textAppearance="?android:attr/textAppearanceMedium" />
         
         <TextView
