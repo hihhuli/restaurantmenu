@@ -14,6 +14,7 @@ public class MenuItem {
     private String ingredientOptions;
     private String dietOptions;
     private String size;
+    private int likes;
     
     public long getId() {
         return id;
@@ -109,6 +110,14 @@ public class MenuItem {
     
     public void setSize(String size) {
         this.size = size;
+    }
+    
+    public int getLikes() {
+        return likes;
+    }
+    
+    public void setLikes(int likes) {
+        this.likes = likes;
     }
     
     @Override

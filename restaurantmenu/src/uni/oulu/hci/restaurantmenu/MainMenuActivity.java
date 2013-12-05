@@ -45,7 +45,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("2. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -56,7 +57,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("3. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -67,7 +69,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("4. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -78,7 +81,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("5. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -89,7 +93,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("6. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -100,7 +105,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("Instanta al pollo", 
                 "L, (G)", 
                 9.2, 
@@ -111,7 +117,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("7. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -122,7 +129,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("8. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -133,7 +141,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("9. Lumache della casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -144,7 +153,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("Insalata al salmone", 
                 "D, (G)", 
                 7.9, 
@@ -155,7 +165,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("Salad table", 
                 "", 
                 3.6, 
@@ -166,7 +177,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         dataSource.createMenuItem("Sweet potato soup", 
                 "LL, (G)", 
                 7.9, 
@@ -177,7 +189,8 @@ public class MainMenuActivity extends TabActivity {
                 "ingredient1;ingredient2", 
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
-                "big;small");
+                "big;small",
+                2);
         
         createTabHost(titles);
         ((Button)findViewById(R.id.myOrderButton)).setEnabled(true);

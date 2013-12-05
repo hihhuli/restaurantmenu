@@ -26,7 +26,8 @@ public class MenuDataSource implements Serializable {
             MySQLiteHelper.COLUMN_INGREDIENTS,
             MySQLiteHelper.COLUMN_INGREDIENT_OPTIONS,
             MySQLiteHelper.COLUMN_DIET_OPTIONS,
-            MySQLiteHelper.COLUMN_SIZE};
+            MySQLiteHelper.COLUMN_SIZE,
+            MySQLiteHelper.COLUMN_LIKES};
     
     public MenuDataSource(Context context) {
         dbHelper = new MySQLiteHelper(context);
@@ -50,7 +51,8 @@ public class MenuDataSource implements Serializable {
             String ingredients,
             String ingredientOptions,
             String dietOptions,
-            String size) {
+            String size,
+            int likes) {
         ContentValues values = new ContentValues();
         
         values.put(MySQLiteHelper.COLUMN_TITLE, name);
@@ -64,6 +66,7 @@ public class MenuDataSource implements Serializable {
         values.put(MySQLiteHelper.COLUMN_INGREDIENT_OPTIONS, ingredientOptions);
         values.put(MySQLiteHelper.COLUMN_DIET_OPTIONS, dietOptions);
         values.put(MySQLiteHelper.COLUMN_SIZE, size);
+        values.put(MySQLiteHelper.COLUMN_LIKES, likes);
         
         long insertId = database.insert(MySQLiteHelper.TABLE_MENU, null,
                 values);
@@ -126,7 +129,7 @@ public class MenuDataSource implements Serializable {
         menuItem.setId(cursor.getLong(0));
         menuItem.setTitle(cursor.getString(1));
         menuItem.setDiets(cursor.getString(2));
-        menuItem.setPrice(cursor.getInt(3));
+        menuItem.setPrice(cursor.getDouble(3));
         menuItem.setCategory(cursor.getString(4));
         menuItem.setDescription(cursor.getString(5));
         menuItem.setSpiciness(cursor.getString(6));
@@ -135,6 +138,7 @@ public class MenuDataSource implements Serializable {
         menuItem.setIngredientOptions(cursor.getString(9));
         menuItem.setDietOptions(cursor.getString(10));
         menuItem.setSize(cursor.getString(11));
+        menuItem.setLikes(cursor.getInt(12));
         return menuItem;
     }
 }

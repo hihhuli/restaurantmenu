@@ -19,8 +19,9 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     public static final String COLUMN_INGREDIENT_OPTIONS = "ingredient_options";
     public static final String COLUMN_DIET_OPTIONS       = "diet_options";
     public static final String COLUMN_SIZE               = "size";
+    public static final String COLUMN_LIKES              = "likes";
     private static final String DATABASE_NAME            = "menu.db";
-    private static final int DATABASE_VERSION            = 2;
+    private static final int DATABASE_VERSION            = 5;
     
     private static final String DATABASE_CREATE = "create table " + TABLE_MENU
             + "(" + COLUMN_ID + " integer primary key autoincrement, "
@@ -34,7 +35,8 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
             + COLUMN_INGREDIENTS + " text not null, "
             + COLUMN_INGREDIENT_OPTIONS + " text not null, "
             + COLUMN_DIET_OPTIONS + " text not null, "
-            + COLUMN_SIZE + " text not null"
+            + COLUMN_SIZE + " text not null, "
+            + COLUMN_LIKES + " int not null"
             + ");";
     
     public MySQLiteHelper(Context context) {
