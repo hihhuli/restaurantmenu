@@ -106,5 +106,6 @@
     <string name="back">Back</string>
     <string name="start">Start</string>
     <string name="orderSent">Your order has been sent to the kitchen. The cook is now preparing your meal.</string>
+    <string name="confirmed">CONFIRMED</string>
 
 </resources>

@@ -1,6 +1,7 @@
 package uni.oulu.hci.restaurantmenu;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -16,7 +17,10 @@ import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.ScrollView;
+import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
@@ -126,6 +130,7 @@ public class MainMenuActivity extends FragmentActivity {
         LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = vi.inflate(R.layout.popup_my_order, null);
         
+        populateMyOrderView(popupView);
         this.myorderpopup = new PopupWindow(popupView);
         
         this.myorderpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
@@ -165,6 +170,31 @@ public class MainMenuActivity extends FragmentActivity {
         this.corfirmedpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 100, 260);
         this.corfirmedpopup.setFocusable(true);
         this.corfirmedpopup.update(400, 300);
+    }
+    
+    private void populateOrderedItems(List<MenuItem> items, LinearLayout scrollViewLayout, int layoutId) {
+    	LinearLayout layout;
+    	for (MenuItem item : items) {
+	    	layout = (LinearLayout)getLayoutInflater().inflate(layoutId, null);
+	        ((TextView)layout.findViewById(R.id.itemTitleView)).setText(item.getTitle());
+	        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(item.getPrice()) + " €");
+	        scrollViewLayout.addView(layout);
+	    }
+    }
+    
+    private void populateMyOrderView(View view) {
+    	LinearLayout waitingScrLayout =(LinearLayout)view.findViewById(R.id.waitingScrollViewLayout);
+    	ArrayList<MenuItem> confirmedItems = this.userOrder.getConfirmedItems();
+    	
+    	if (confirmedItems.size() > 0) {
+        	LinearLayout confirmedScrLayout = (LinearLayout)view.findViewById(R.id.confirmedScrollViewLayout);
+        	((View)view.findViewById(R.id.confirmedView)).setVisibility(View.VISIBLE);
+        	((View)view.findViewById(R.id.confirmedSeparator)).setVisibility(View.VISIBLE);
+        	((View)view.findViewById(R.id.confirmedScrollView)).setVisibility(View.VISIBLE);
+    		populateOrderedItems(confirmedItems, confirmedScrLayout, R.layout.confirmed_item);
+    	}
+    	populateOrderedItems(this.userOrder.getWaitingItems(), waitingScrLayout, R.layout.waiting_item);
+    	((TextView)view.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
     }
     
     public void confirmationOkClicked(final View view) {
