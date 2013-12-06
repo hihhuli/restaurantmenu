@@ -19,6 +19,7 @@ import android.widget.GridLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.ImageView;
 
 public class TabMenuActivity extends Activity {
     
@@ -70,6 +71,8 @@ public class TabMenuActivity extends Activity {
 		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
+        int imgId = getResources().getIdentifier(menuItem.getImage(), "drawable", getPackageName());
+        ((ImageView)layout.findViewById(R.id.itemImageView)).setImageResource(imgId);
     }
     
     private GridLayout getExpandedItemLayout(int index) {
