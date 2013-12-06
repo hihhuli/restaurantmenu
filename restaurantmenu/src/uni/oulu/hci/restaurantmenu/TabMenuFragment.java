@@ -1,7 +1,6 @@
 package uni.oulu.hci.restaurantmenu;
 
 import java.util.List;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -87,12 +86,26 @@ public class TabMenuFragment extends Fragment {
         }
     }
     
+    private String parseLikesStr(int likes) {
+        if (likes > 999) {
+        	likes = 999;
+        }
+        String likes_str = Integer.toString(likes);
+        String spaces = "";
+        for (int i = 0; i < (3 - likes_str.length()) + 1; i++) {
+        	spaces += " ";
+        }
+        
+        return likes_str + spaces + "people likes this";
+    }
+    
     private void setItemProperties(ViewGroup layout, MenuItem menuItem, int count) {
     	((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
 		((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
 		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
+        ((Button)layout.findViewById(R.id.likeButton)).setText(parseLikesStr(menuItem.getLikes()));
         int imgId = getResources().getIdentifier(menuItem.getImage(), "drawable", getActivity().getPackageName());
         ((ImageView)layout.findViewById(R.id.itemImageView)).setImageResource(imgId);
         setItemOrderViews(layout, count);
@@ -198,5 +211,12 @@ public class TabMenuFragment extends Fragment {
         if (userOrder.isEmpty()) {
         	((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(false);
         }
+    }
+    
+    public void likesClicked(final View view) {
+    	MenuItem item = this.menuItems.get(this.expandedIndex);
+    	item.setLikes(item.getLikes() + 1);
+    	Log.d("likes", "" +item.getLikes());
+    	((Button)view.findViewById(R.id.likeButton)).setText(parseLikesStr(item.getLikes()));
     }
 }

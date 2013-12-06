@@ -83,12 +83,12 @@
 			android:layout_height="wrap_content"
 			android:layout_marginTop="10dp"
 			android:clickable="true"
-			android:text="@string/item_likes"
 			android:drawablePadding="10dp"
 			android:drawableRight="@drawable/like"
 			android:textColor="#000080"
 			android:typeface="serif"
-			android:textAppearance="?android:attr/textAppearanceMedium" />
+			android:textAppearance="?android:attr/textAppearanceMedium"
+			android:onClick="likesClicked" />
     </LinearLayout>
     
    	<LinearLayout

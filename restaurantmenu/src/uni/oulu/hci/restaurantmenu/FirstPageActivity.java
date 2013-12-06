@@ -37,7 +37,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                50);
         dataSource.createMenuItem("2. Lumache Della Casa", 
                 "LL, (L, G)", 
                 9.4, 
@@ -49,7 +49,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                12);
         dataSource.createMenuItem("3. Classic Caesar Salad", 
                 "L", 
                 9.9, 
@@ -61,7 +61,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                34);
         dataSource.createMenuItem("4. Hot Caramel Pastry", 
                 "L, (G)", 
                 8.9, 
@@ -73,7 +73,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                77);
         dataSource.createMenuItem("5. Butternut Soup", 
                 "L, D", 
                 12.5, 
@@ -85,7 +85,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                9);
         dataSource.createMenuItem("6. Instanta al pollo", 
                 "L, (G)", 
                 9.2, 
@@ -97,7 +97,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                22);
         dataSource.createMenuItem("7. Insalata al salmone", 
                 "D, (G)", 
                 7.9, 
@@ -109,7 +109,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                48);
         dataSource.createMenuItem("8. Salad table", 
                 "", 
                 3.6, 
@@ -121,7 +121,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                52);
         dataSource.createMenuItem("9. Sweet potato soup", 
                 "LL, (G)", 
                 7.9, 
@@ -133,7 +133,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                37);
         
         //Pizzas tab contents
         dataSource.createMenuItem("1. Satay Chicken Pizza", 
@@ -147,7 +147,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                42);
         dataSource.createMenuItem("2. Garlic Chicken Pizza", 
                 "L", 
                 9.9, 
@@ -159,7 +159,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                11);
         dataSource.createMenuItem("3. Spinach Alfredo Pizza", 
                 "", 
                 11.9, 
@@ -171,7 +171,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                16);
         dataSource.createMenuItem("4. Pepperoni Pizza", 
                 "L, (G)", 
                 11.5, 
@@ -183,7 +183,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                89);
         dataSource.createMenuItem("5. Pear & Cheese Pizza", 
                 "L, (G)", 
                 12.9, 
@@ -195,7 +195,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                5);
         dataSource.createMenuItem("6. Opera", 
                 "L, (G)", 
                 8.9, 
@@ -207,7 +207,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                112);
         dataSource.createMenuItem("7. Napoli", 
                 "(L)", 
                 9.5, 
@@ -219,7 +219,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                66);
         dataSource.createMenuItem("8. Frutti Di Mare", 
                 "L, (G)", 
                 9.9, 
@@ -231,7 +231,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                43);
         dataSource.createMenuItem("9. Della Casa", 
                 "L, (G)", 
                 8.9, 
@@ -243,7 +243,7 @@ public class FirstPageActivity extends Activity {
                 "ingredient1;ingredient2;ingredient3;ingredient4", 
                 "lactose-free", 
                 "big;small",
-                2);
+                19);
         this.data = dataSource.getMenuItemMap();
         dataSource.close();
     }

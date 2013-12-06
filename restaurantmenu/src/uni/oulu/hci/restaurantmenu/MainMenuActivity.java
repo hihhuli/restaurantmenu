@@ -222,6 +222,11 @@ public class MainMenuActivity extends FragmentActivity {
     	TabMenuFragment fragment = getCurrentFragment();
         fragment.removeFromOrderClicked(view, this.userOrder);
     }
+    
+    public void likesClicked(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+    	fragment.likesClicked(view);
+    }
 
     public void callWaiterClicked(final View view) {
         // would send a message to a waiter to come by, not implemented here
