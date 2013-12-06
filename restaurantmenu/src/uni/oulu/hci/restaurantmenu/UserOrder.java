@@ -3,9 +3,9 @@ package uni.oulu.hci.restaurantmenu;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
-@SuppressWarnings("serial")
-public class UserOrder implements Serializable {
+public class UserOrder {
 	private ArrayList<MenuItem> orderedItems;
 	
 	public UserOrder() {
@@ -17,9 +17,11 @@ public class UserOrder implements Serializable {
 	}
 	
 	public void removeFromOrder(String title) {
-		for (MenuItem item : this.orderedItems) {
+		for (Iterator<MenuItem> it = this.orderedItems.iterator(); it.hasNext();) {
+			MenuItem item = it.next();
 			if (item.getTitle().equals(title)) {
-				this.orderedItems.remove(item);
+				it.remove();
+				break;
 			}
 		}
 	}

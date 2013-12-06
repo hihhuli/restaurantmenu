@@ -1,6 +1,8 @@
 package uni.oulu.hci.restaurantmenu;
 
 
+import java.io.Serializable;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;

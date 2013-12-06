@@ -6,39 +6,46 @@ import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentTabHost;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
+import android.widget.GridLayout;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TabHost;
+import android.widget.TextView;
 import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabHost.TabSpec;
 
 @SuppressWarnings("deprecation")
-public class MainMenuActivity extends TabActivity {
+public class MainMenuActivity extends FragmentActivity {
     
     private PopupWindow myorderpopup;
     private PopupWindow corfirmedpopup;
     private MenuDataSource dataSource;
     private UserOrder userOrder;
+    private String currentFragmentTag;
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
         final String[] titles = {"Starters", "Pizzas", "Pastas", "Burgers", "Drinks"};
-        UserOrder userOrder = new UserOrder();
+        this.userOrder = new UserOrder();
         
-        dataSource = new MenuDataSource(this);
-        dataSource.open();
+        this.dataSource = new MenuDataSource(this);
+        this.dataSource.open();
         
-        dataSource.deleteAllMenuItems();
+        this.dataSource.deleteAllMenuItems();
         
         //Starters tab contents
-        dataSource.createMenuItem("1. Butternut Squash", 
+        this.dataSource.createMenuItem("1. Butternut Squash", 
                 "L, (G)", 
                 10, 
                 "Starters", 
@@ -50,7 +57,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("2. Lumache Della Casa", 
+        this.dataSource.createMenuItem("2. Lumache Della Casa", 
                 "LL, (L, G)", 
                 9.4, 
                 "Starters", 
@@ -62,7 +69,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("3. Classic Caesar Salad", 
+        this.dataSource.createMenuItem("3. Classic Caesar Salad", 
                 "L", 
                 9.9, 
                 "Starters", 
@@ -74,7 +81,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("4. Hot Caramel Pastry", 
+        this.dataSource.createMenuItem("4. Hot Caramel Pastry", 
                 "L, (G)", 
                 8.9, 
                 "Starters", 
@@ -86,7 +93,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("5. Butternut Soup", 
+        this.dataSource.createMenuItem("5. Butternut Soup", 
                 "L, D", 
                 12.5, 
                 "Starters", 
@@ -98,7 +105,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("6. Instanta al pollo", 
+        this.dataSource.createMenuItem("6. Instanta al pollo", 
                 "L, (G)", 
                 9.2, 
                 "Starters", 
@@ -110,7 +117,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("7. Insalata al salmone", 
+        this.dataSource.createMenuItem("7. Insalata al salmone", 
                 "D, (G)", 
                 7.9, 
                 "Starters", 
@@ -122,7 +129,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("8. Salad table", 
+        this.dataSource.createMenuItem("8. Salad table", 
                 "", 
                 3.6, 
                 "Starters", 
@@ -134,7 +141,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("9. Sweet potato soup", 
+        this.dataSource.createMenuItem("9. Sweet potato soup", 
                 "LL, (G)", 
                 7.9, 
                 "Starters", 
@@ -148,7 +155,7 @@ public class MainMenuActivity extends TabActivity {
                 2);
         
         //Pizzas tab contents
-        dataSource.createMenuItem("1. Satay Chicken Pizza", 
+        this.dataSource.createMenuItem("1. Satay Chicken Pizza", 
                 "L, (G)", 
                 12.5, 
                 "Pizzas", 
@@ -160,7 +167,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("2. Garlic Chicken Pizza", 
+        this.dataSource.createMenuItem("2. Garlic Chicken Pizza", 
                 "L", 
                 9.9, 
                 "Pizzas", 
@@ -172,7 +179,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("3. Spinach Alfredo Pizza", 
+        this.dataSource.createMenuItem("3. Spinach Alfredo Pizza", 
                 "", 
                 11.9, 
                 "Pizzas", 
@@ -184,7 +191,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("4. Pepperoni Pizza", 
+        this.dataSource.createMenuItem("4. Pepperoni Pizza", 
                 "L, (G)", 
                 11.5, 
                 "Pizzas", 
@@ -196,7 +203,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("5. Pear & Cheese Pizza", 
+        this.dataSource.createMenuItem("5. Pear & Cheese Pizza", 
                 "L, (G)", 
                 12.9, 
                 "Pizzas", 
@@ -208,7 +215,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("6. Opera", 
+        this.dataSource.createMenuItem("6. Opera", 
                 "L, (G)", 
                 8.9, 
                 "Pizzas", 
@@ -220,7 +227,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("7. Napoli", 
+        this.dataSource.createMenuItem("7. Napoli", 
                 "(L)", 
                 9.5, 
                 "Pizzas", 
@@ -232,7 +239,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("8. Frutti Di Mare", 
+        this.dataSource.createMenuItem("8. Frutti Di Mare", 
                 "L, (G)", 
                 9.9, 
                 "Pizzas", 
@@ -244,7 +251,7 @@ public class MainMenuActivity extends TabActivity {
                 "lactose-free", 
                 "big;small",
                 2);
-        dataSource.createMenuItem("9. Della Casa", 
+        this.dataSource.createMenuItem("9. Della Casa", 
                 "L, (G)", 
                 8.9, 
                 "Pizzas", 
@@ -262,20 +269,25 @@ public class MainMenuActivity extends TabActivity {
         ((Button)findViewById(R.id.checkoutButton)).setEnabled(true);
     }
     
+    public UserOrder getUserOrder() {
+    	return this.userOrder;
+    }
+    
     @Override
     protected void onResume() {
-        dataSource.open();
+        this.dataSource.open();
         super.onResume();
     }
     
     @Override
     protected void onPause() {
-        dataSource.close();
+        this.dataSource.close();
         super.onPause();
     }
     
     private void createTabHost(String[] titles) {
-        final TabHost tabHost = getTabHost();
+    	final FragmentTabHost tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         
         for (String title : titles) {
             TabSpec spec = tabHost.newTabSpec(title);
@@ -284,12 +296,13 @@ public class MainMenuActivity extends TabActivity {
                 tabButton.setBackgroundColor(getResources().getColor(R.color.hilighted));
             }
             tabButton.setText(title);
-            Intent intent = new Intent(this, TabMenuActivity.class);
-            intent.putExtra("data", (Serializable)dataSource.getMenuItemsByCategory(title));
-            intent.putExtra("order", (Serializable)userOrder);
-            spec.setIndicator(tabButton).setContent(intent);
-            tabHost.addTab(spec);
+            Bundle args = new Bundle();
+            args.putSerializable("data", (Serializable)dataSource.getMenuItemsByCategory(title));
+            spec.setIndicator(tabButton);
+            tabHost.addTab(spec, TabMenuFragment.class, args);
         }
+        
+        this.currentFragmentTag = "Starters";
         
         tabHost.setOnTabChangedListener(new OnTabChangeListener(){
             /**
@@ -302,6 +315,7 @@ public class MainMenuActivity extends TabActivity {
                     tabHost.getTabWidget().getChildAt(i).setBackgroundColor(getResources().getColor(R.color.default_color)); //unselected
                 }
                 tabHost.getTabWidget().getChildAt(tabHost.getCurrentTab()).setBackgroundColor(getResources().getColor(R.color.hilighted)); // selected
+                currentFragmentTag = tabId;
             }});
     }
     
@@ -350,19 +364,19 @@ public class MainMenuActivity extends TabActivity {
         LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = vi.inflate(R.layout.popup_my_order, null);
         
-        myorderpopup = new PopupWindow(popupView);
+        this.myorderpopup = new PopupWindow(popupView);
         
-        myorderpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
+        this.myorderpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
         
-        myorderpopup.setFocusable(true);
-        myorderpopup.update(570, 900);
+        this.myorderpopup.setFocusable(true);
+        this.myorderpopup.update(570, 900);
     }
     
     public void closeMyOrderClicked(final View view) {
         // close search popup with cancel
         Log.d("MainMenuActivity","Close button clicked.");
         
-        myorderpopup.dismiss();
+        this.myorderpopup.dismiss();
     }
     
     public void clearMyOrderClicked(final View view) {
@@ -378,26 +392,74 @@ public class MainMenuActivity extends TabActivity {
         LayoutInflater vi = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View popupView = vi.inflate(R.layout.popup_order_confirmed, null);
         
-        corfirmedpopup = new PopupWindow(popupView);
+        this.corfirmedpopup = new PopupWindow(popupView);
         
-        corfirmedpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
+        this.corfirmedpopup.showAtLocation((View) findViewById(R.id.buttonLayout2), Gravity.LEFT | Gravity.TOP, 15, 60);
         
-        corfirmedpopup.setFocusable(true);
-        corfirmedpopup.update(570, 900);
+        this.corfirmedpopup.setFocusable(true);
+        this.corfirmedpopup.update(570, 900);
     }
-    
-    public void callWaiterClicked(final View view) {
-        // would send a message to a waiter to come by, not implemented here
-        // feedback to tell that a request was sent
-        Log.d("MainMenuActivity","Call waiter button clicked.");
-    }
-    
-    
     
     public void closeOrderSent(final View view) {
         // close search popup with cancel
         Log.d("MainMenuActivity","OrderSent popup clicked.");
         
-        corfirmedpopup.dismiss();
+        this.corfirmedpopup.dismiss();
     }
+    
+    public TabMenuFragment getCurrentFragment() {
+    	return (TabMenuFragment)getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
+    }
+    
+    public void searchClicked(final View view) {
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.searchClicked(view);
+    }
+    
+    public void cancelSearchClicked(final View view) {
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.cancelSearchClicked(view);
+    }
+    
+    public void okSearchClicked(final View view) {
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.okSearchClicked(view);
+    }
+    
+    public void clearSearchClicked(final View view) {
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.clearSearchClicked(view);
+    }
+    
+    public void itemClicked(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.itemClicked(view, this.userOrder);
+    }
+    
+    public void personalChoicesOpened(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.personalChoicesOpened(view, this.userOrder);
+    }
+    
+    public void personalChoicesClosed(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.personalChoicesClosed(view, this.userOrder);
+    }
+    
+    public void addToOrderClicked(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.addToOrderClicked(view, this.userOrder);
+    }
+    
+    public void removeFromOrderClicked(final View view) {
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.removeFromOrderClicked(view, this.userOrder);
+    }
+
+    public void callWaiterClicked(final View view) {
+        // would send a message to a waiter to come by, not implemented here
+        // feedback to tell that a request was sent
+        Log.d("TabMenuActivity","Call waiter button clicked.");
+    }
+    
 }
