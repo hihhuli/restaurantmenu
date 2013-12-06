@@ -2,25 +2,20 @@ package uni.oulu.hci.restaurantmenu;
 
 import java.util.List;
 
-import android.app.Activity;
-import android.content.Context;
-import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.LinearLayout;
 import android.widget.GridLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.ScrollView;
 import android.widget.TextView;
-import android.widget.ImageView;
 
 public class TabMenuFragment extends Fragment {
     
@@ -55,6 +50,10 @@ public class TabMenuFragment extends Fragment {
         return this.fragmentView;
     }
     
+    public View getExpandedView() {
+    	return this.scrollViewLayout.getChildAt(this.expandedIndex);
+    }
+    
     private void populateScrollView() {
     	ViewGroup layout;
     	
@@ -75,7 +74,7 @@ public class TabMenuFragment extends Fragment {
     	scrollViewLayout.addView(view, index);
     }
     
-    private void setItemOrderViews(ViewGroup layout, int count) {
+    public void setItemOrderViews(ViewGroup layout, int count) {
         Button removeButton = ((Button)layout.findViewById(R.id.removeFromOrderButton));
         TextView inOrder = ((TextView)layout.findViewById(R.id.inOrderView));
     	if (count > 0) {
@@ -158,7 +157,7 @@ public class TabMenuFragment extends Fragment {
     }
     
     public void itemClicked(final View view, UserOrder userOrder) {
-    	int diff = scrollViewLayout.getChildAt(this.expandedIndex).getHeight() + view.getHeight() + 10;
+    	int diff = getExpandedView().getHeight() + view.getHeight() + 10;
     	int index = scrollViewLayout.indexOfChild(view);
     	
 		this.scrollView.smoothScrollTo(0, this.scrollViewLayout.getChildAt(index).getBottom() - diff);
@@ -187,6 +186,7 @@ public class TabMenuFragment extends Fragment {
         MenuItem menuItem = menuItems.get(expandedIndex);
         userOrder.addtoOrder(menuItem);
         setItemOrderViews(layout, userOrder.getCount(menuItem.getTitle()));
+        ((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(true);
     }
     
     public void removeFromOrderClicked(final View view, UserOrder userOrder) {
@@ -195,6 +195,9 @@ public class TabMenuFragment extends Fragment {
         MenuItem menuItem = menuItems.get(expandedIndex);
         userOrder.removeFromOrder(menuItem.getTitle());
         setItemOrderViews(layout, userOrder.getCount(menuItem.getTitle()));
+        if (userOrder.isEmpty()) {
+        	((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(false);
+        }
     }
     
 }

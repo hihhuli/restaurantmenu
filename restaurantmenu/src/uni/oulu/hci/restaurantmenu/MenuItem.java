@@ -1,6 +1,9 @@
 package uni.oulu.hci.restaurantmenu;
 
-public class MenuItem {
+import java.io.Serializable;
+
+@SuppressWarnings("serial")
+public class MenuItem implements Serializable {
     
     private long id;
     private String title;

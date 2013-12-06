@@ -2,14 +2,16 @@ package uni.oulu.hci.restaurantmenu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 
-public class UserOrder {
+@SuppressWarnings("serial")
+public class UserOrder implements Serializable {
 	private ArrayList<MenuItem> orderedItems;
+	private ArrayList<MenuItem> confirmedItems;
 	
 	public UserOrder() {
 		this.orderedItems = new ArrayList<MenuItem>();
+		this.confirmedItems = new ArrayList<MenuItem>();
 	}
 	
 	public void addtoOrder(MenuItem item) {
@@ -34,5 +36,18 @@ public class UserOrder {
 			}
 		}
 		return count;
+	}
+	
+	public void confirmOrder() {
+		this.confirmedItems.addAll(orderedItems);
+		this.orderedItems.clear();
+	}
+	
+	public boolean isConfirmedEmpty() {
+		return this.confirmedItems.isEmpty();
+	}
+	
+	public boolean isEmpty() {
+		return this.orderedItems.isEmpty() && this.confirmedItems.isEmpty();
 	}
 }

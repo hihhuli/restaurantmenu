@@ -2,6 +2,7 @@ package uni.oulu.hci.restaurantmenu;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import android.content.ContentValues;
@@ -100,6 +101,26 @@ public class MenuDataSource implements Serializable {
         while (!cursor.isAfterLast()) {
             MenuItem menuItem = cursorToMenuItem(cursor);
             menuItems.add(menuItem);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return menuItems;
+    }
+    
+    public HashMap<String, List<MenuItem>> getMenuItemMap() {
+    	HashMap<String, List<MenuItem>> menuItems = new HashMap<String, List<MenuItem>>();
+        
+        Cursor cursor = database.query(MySQLiteHelper.TABLE_MENU,
+                allColumns, null, null, null, null, null);
+        
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            MenuItem menuItem = cursorToMenuItem(cursor);
+            String category = menuItem.getCategory();
+            if (!menuItems.containsKey(category)) {
+            	menuItems.put(category, new ArrayList<MenuItem>());
+            }
+            menuItems.get(category).add(menuItem);
             cursor.moveToNext();
         }
         cursor.close();
