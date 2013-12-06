@@ -41,7 +41,7 @@
        	android:orientation="vertical">
    
         <Button
-        	android:id="@+id/removeFromOrderButton" 
+        	android:id="@+id/removeFromWaitingButton" 
         	style="@android:style/Widget.Holo.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -51,7 +51,8 @@
             android:drawableLeft="@android:drawable/ic_delete"
             android:textColor="#000080"
             android:typeface="serif"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:onClick="removeFromWaitingClicked" />
         
         <Button
         	android:id="@+id/editChoiceButton" 

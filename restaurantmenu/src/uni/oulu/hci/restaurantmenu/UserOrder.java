@@ -28,6 +28,10 @@ public class UserOrder implements Serializable {
 		}
 	}
 	
+	public void removeFromOrder(int index) {
+		this.waitingItems.remove(index);
+	}
+	
 	public int getCount(String title) {
 		int count = 0;
 		for (MenuItem item : this.waitingItems) {
@@ -36,6 +40,10 @@ public class UserOrder implements Serializable {
 			}
 		}
 		return count;
+	}
+	
+	public void clearWaiting() {
+		this.waitingItems.clear();
 	}
 	
 	public ArrayList<MenuItem> getConfirmedItems() {
@@ -48,11 +56,15 @@ public class UserOrder implements Serializable {
 	
 	public void confirmOrder() {
 		this.confirmedItems.addAll(this.waitingItems);
-		this.waitingItems.clear();
+		clearWaiting();
 	}
 	
 	public boolean isConfirmedEmpty() {
 		return this.confirmedItems.isEmpty();
+	}
+	
+	public boolean isWaitingEmpty() {
+		return this.waitingItems.isEmpty();
 	}
 	
 	public boolean isEmpty() {

@@ -150,6 +150,17 @@ public class MainMenuActivity extends FragmentActivity {
         // close search popup with ok
         Log.d("MainMenuActivity","Clear button clicked.");
         
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.setItemOrderViews((ViewGroup)fragment.getExpandedView(), 0);
+        this.userOrder.clearWaiting();
+        if (this.userOrder.isConfirmedEmpty()) {
+        	((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+            this.myorderpopup.dismiss();
+        } else {
+        	((Button)view.getRootView().findViewById(R.id.confirmOrderButton)).setEnabled(false);
+        	((Button)view.getRootView().findViewById(R.id.clearAllButton)).setEnabled(false);
+        }
+        
         //myorderpopup.dismiss();
     }
     
@@ -172,6 +183,29 @@ public class MainMenuActivity extends FragmentActivity {
         this.corfirmedpopup.update(400, 300);
     }
     
+    public void removeFromWaitingClicked(final View view) {
+    	View parentView = (View) view.getParent().getParent();
+    	LinearLayout layout = (LinearLayout)parentView.getParent();
+    	View popupView = layout.getRootView();
+    	
+    	int index = layout.indexOfChild(parentView);
+    	MenuItem item = this.userOrder.getWaitingItems().get(index);
+    	this.userOrder.removeFromOrder(index);
+    	layout.removeView(parentView);
+    	((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
+    	
+    	TabMenuFragment fragment = getCurrentFragment();
+        fragment.setItemOrderViews((ViewGroup)fragment.getExpandedView(), this.userOrder.getCount(item.getTitle()));
+    	
+    	if (layout.getChildCount() == 0 && this.userOrder.isConfirmedEmpty()) {
+    		((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+    		this.myorderpopup.dismiss();
+    	} else if (layout.getChildCount() == 0) {
+    		((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+    		((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
+    	}
+    }
+    
     private void populateOrderedItems(List<MenuItem> items, LinearLayout scrollViewLayout, int layoutId) {
     	LinearLayout layout;
     	for (MenuItem item : items) {
@@ -184,16 +218,20 @@ public class MainMenuActivity extends FragmentActivity {
     
     private void populateMyOrderView(View view) {
     	LinearLayout waitingScrLayout =(LinearLayout)view.findViewById(R.id.waitingScrollViewLayout);
-    	ArrayList<MenuItem> confirmedItems = this.userOrder.getConfirmedItems();
     	
-    	if (confirmedItems.size() > 0) {
+    	if (!this.userOrder.isConfirmedEmpty()) {
         	LinearLayout confirmedScrLayout = (LinearLayout)view.findViewById(R.id.confirmedScrollViewLayout);
         	((View)view.findViewById(R.id.confirmedView)).setVisibility(View.VISIBLE);
         	((View)view.findViewById(R.id.confirmedSeparator)).setVisibility(View.VISIBLE);
         	((View)view.findViewById(R.id.confirmedScrollView)).setVisibility(View.VISIBLE);
-    		populateOrderedItems(confirmedItems, confirmedScrLayout, R.layout.confirmed_item);
+    		populateOrderedItems(this.userOrder.getConfirmedItems(), confirmedScrLayout, R.layout.confirmed_item);
     	}
-    	populateOrderedItems(this.userOrder.getWaitingItems(), waitingScrLayout, R.layout.waiting_item);
+    	if (!this.userOrder.isWaitingEmpty()) {
+    		populateOrderedItems(this.userOrder.getWaitingItems(), waitingScrLayout, R.layout.waiting_item);
+    	} else {
+    		((Button)view.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+    		((Button)view.findViewById(R.id.clearAllButton)).setEnabled(false);
+    	}
     	((TextView)view.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
     }
     
