@@ -13,7 +13,7 @@
 	 	android:id="@+id/waiterButton"
 	    style="@android:style/Widget.Holo.Button"
 	    android:layout_width="wrap_content"
-	    android:layout_height="70dp"
+	    android:layout_height="wrap_content"
 	    android:layout_marginRight="10dp"
 	    android:clickable="true"
 	    android:padding="10dp"
@@ -24,7 +24,7 @@
 	    android:textStyle="bold"
 	    android:typeface="serif"
 	    android:onClick="callWaiterClicked"
-	    android:textAppearance="?android:attr/textAppearanceLarge" />
+	    android:textAppearance="?android:attr/textAppearanceMedium" />
     
    <LinearLayout
 	    android:id="@+id/searchLayout"
@@ -340,6 +340,11 @@
    	    </LinearLayout>
    	    
    	</LinearLayout>
+   	
+   	<View
+	    android:layout_width="wrap_content"
+       	android:layout_height="0dp" 
+	    android:layout_weight="1"/>
    	
    	<LinearLayout
    	    android:id="@+id/buttonLayout"

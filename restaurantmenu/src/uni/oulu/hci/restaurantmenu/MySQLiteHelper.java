@@ -1,12 +1,9 @@
 package uni.oulu.hci.restaurantmenu;
 
-import java.io.Serializable;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-@SuppressWarnings("serial")
 public class MySQLiteHelper extends SQLiteOpenHelper {
     
     public static final String TABLE_MENU                = "menu";

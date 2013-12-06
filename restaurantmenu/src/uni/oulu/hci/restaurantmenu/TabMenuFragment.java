@@ -199,5 +199,4 @@ public class TabMenuFragment extends Fragment {
         	((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(false);
         }
     }
-    
 }

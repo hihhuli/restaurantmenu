@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/confirmedItemLayout"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    
+	<LinearLayout
+    	android:id="@+id/itemTitleLayout"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_marginTop="20dp"
+       	android:layout_gravity="left"
+       	android:orientation="horizontal">
+            
+	    <TextView 
+			android:id="@+id/itemTitleView"
+		    android:layout_width="245dp"
+		    android:layout_height="wrap_content"
+		    android:layout_marginLeft="10dp"
+		    android:textColor="#000080"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+	
+		<TextView 
+		    android:id="@+id/itemPriceView"
+		    android:layout_width="80dp"
+		    android:layout_height="wrap_content"
+		    android:gravity="right"
+		    android:textColor="#000080"
+		    android:typeface="serif"
+		    android:textAppearance="?android:attr/textAppearanceLarge" />
+            
+	</LinearLayout>    
+
+    <LinearLayout 
+        android:id="@+id/itemButtonLayout"
+       	android:layout_width="wrap_content"
+       	android:layout_height="wrap_content"
+       	android:layout_marginLeft="30dp"
+       	android:orientation="vertical">
+   
+        <Button
+        	android:id="@+id/removeFromOrderButton" 
+        	style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:text="@string/remove_from_order"
+            android:drawablePadding="10dp"
+            android:drawableLeft="@android:drawable/ic_delete"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+        <Button
+        	android:id="@+id/editChoiceButton" 
+        	style="@android:style/Widget.Holo.Button.Borderless"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:clickable="true"
+            android:text="@string/edit_item"
+            android:drawablePadding="11dp"
+            android:drawableLeft="@drawable/pen"
+            android:textColor="#000080"
+            android:typeface="serif"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+	</LinearLayout>
+</LinearLayout>
