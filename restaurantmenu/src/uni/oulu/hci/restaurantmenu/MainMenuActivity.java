@@ -149,19 +149,20 @@ public class MainMenuActivity extends FragmentActivity {
     public void clearMyOrderClicked(final View view) {
         // close search popup with ok
         Log.d("MainMenuActivity","Clear button clicked.");
-        
+        View popupView = view.getRootView();
         TabMenuFragment fragment = getCurrentFragment();
+        
         fragment.setItemOrderViews((ViewGroup)fragment.getExpandedView(), 0);
         this.userOrder.clearWaiting();
         if (this.userOrder.isConfirmedEmpty()) {
         	((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
             this.myorderpopup.dismiss();
         } else {
-        	((Button)view.getRootView().findViewById(R.id.confirmOrderButton)).setEnabled(false);
-        	((Button)view.getRootView().findViewById(R.id.clearAllButton)).setEnabled(false);
+        	((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+        	((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
+        	((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
+        	((LinearLayout)popupView.findViewById(R.id.waitingScrollViewLayout)).removeAllViews();
         }
-        
-        //myorderpopup.dismiss();
     }
     
     public void confirmMyOrderClicked(final View view) {
