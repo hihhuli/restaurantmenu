@@ -110,7 +110,7 @@ public class TabMenuFragment extends Fragment {
         ((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
         ((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
-        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
+        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " e");
         ((Button)layout.findViewById(R.id.likeButton)).setText(parseLikesStr(menuItem.getLikes()));
         int imgId = getResources().getIdentifier(menuItem.getImage(), "drawable", getActivity().getPackageName());
         ((ImageView)layout.findViewById(R.id.itemImageView)).setImageResource(imgId);
