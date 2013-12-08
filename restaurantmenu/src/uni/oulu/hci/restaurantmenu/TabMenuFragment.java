@@ -2,6 +2,7 @@ package uni.oulu.hci.restaurantmenu;
 
 import java.util.ArrayList;
 import java.util.List;
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -21,6 +23,7 @@ public class TabMenuFragment extends Fragment {
     
     private View fragmentView;
     private PopupWindow searchPopup;
+    private List<MenuItem> originalMenuItems;
     private List<MenuItem> menuItems;
     private int expandedIndex;
     private LinearLayout scrollViewLayout;
@@ -37,13 +40,15 @@ public class TabMenuFragment extends Fragment {
             Bundle savedInstanceState) {
         this.fragmentView = inflater.inflate(R.layout.activity_menutab, container, false);
         
-        this.menuItems = (List<MenuItem>) getArguments().getSerializable("data");
+        this.originalMenuItems = (List<MenuItem>) getArguments().getSerializable("data");
         
-        if(this.menuItems == null) {
-            this.menuItems = new ArrayList<MenuItem>();
+        if(this.originalMenuItems == null) {
+            this.originalMenuItems = new ArrayList<MenuItem>();
         }
+        Log.d("tab initialized", "" + this.originalMenuItems.size());
         
-        Log.d("tab initialized", "" + this.menuItems.size());
+        this.menuItems = this.originalMenuItems;
+        
         this.expandedIndex = 0;
         this.scrollViewLayout = (LinearLayout) this.fragmentView.findViewById(R.id.scrollViewLayout);
         this.scrollView = (ScrollView) this.fragmentView.findViewById(R.id.scrollView);
@@ -62,13 +67,14 @@ public class TabMenuFragment extends Fragment {
     private void populateScrollView() {
         ViewGroup layout;
         
-        if (this.menuItems.size() > 0) {
-            layout = getExpandedItemLayout(0, ((MainMenuActivity)getActivity()).getUserOrder());
-            insertToScrollView(layout, this.scrollViewLayout, 0);
-        }
-        for (int i = 1; i < this.menuItems.size(); i++) {
-            layout = getItemLayout(i);
-            insertToScrollView(layout, this.scrollViewLayout, i);
+        for(MenuItem menuItem : this.menuItems) {
+            if(this.scrollViewLayout.getChildCount() == 0) {
+                layout = getExpandedItemLayout(0, ((MainMenuActivity)getActivity()).getUserOrder());
+                insertToScrollView(layout, this.scrollViewLayout, 0);
+            } else {
+                layout = getItemLayout(menuItem);
+                insertToScrollView(layout, this.scrollViewLayout, this.scrollViewLayout.getChildCount());
+            }
         }
     }
     
@@ -137,8 +143,7 @@ public class TabMenuFragment extends Fragment {
         return layout;
     }
     
-    private LinearLayout getItemLayout(int index) {
-        MenuItem menuItem = this.menuItems.get(index);
+    private LinearLayout getItemLayout(MenuItem menuItem) {
         LinearLayout layout = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.smallitem, null);
         
         ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " e");
@@ -167,12 +172,32 @@ public class TabMenuFragment extends Fragment {
         // close search popup with ok
         Log.d("TabMenuActivity","Ok button clicked.");
         
+        EditText editText = (EditText) searchPopup.getContentView().findViewById(R.id.searchEditText);
+        String searchString = editText.getText().toString();
+        
+        ArrayList<MenuItem> filteredList = new ArrayList<MenuItem>();
+        
+        for(MenuItem menuItem : this.originalMenuItems) {
+            if(!menuItem.getTitle().toLowerCase().contains(searchString.toLowerCase())) {
+                continue;
+            }
+            filteredList.add(menuItem);
+        }
+        this.menuItems = filteredList;
+        
+        this.scrollViewLayout.removeAllViews();
+        this.scrollViewLayout.invalidate();
+        populateScrollView();
+        
         this.searchPopup.dismiss();
     }
     
     public void clearSearchClicked(final View view) {
         // close search popup with ok
         Log.d("TabMenuActivity","Clear button clicked.");
+        
+        EditText editText = (EditText) searchPopup.getContentView().findViewById(R.id.searchEditText);
+        editText.setText("");
     }
     
     public void itemClicked(final View view, UserOrder userOrder) {
@@ -181,7 +206,7 @@ public class TabMenuFragment extends Fragment {
         
         this.scrollView.smoothScrollTo(0, this.scrollViewLayout.getChildAt(index).getBottom() - diff);
         this.scrollViewLayout.removeViewAt(this.expandedIndex);
-        insertToScrollView(getItemLayout(this.expandedIndex), this.scrollViewLayout, this.expandedIndex);
+        insertToScrollView(getItemLayout(this.menuItems.get(this.expandedIndex)), this.scrollViewLayout, this.expandedIndex);
         this.expandedIndex = index;
         this.scrollViewLayout.removeViewAt(index);
         insertToScrollView(getExpandedItemLayout(index, userOrder), this.scrollViewLayout, index);
