@@ -1,5 +1,6 @@
 package uni.oulu.hci.restaurantmenu;
 
+import java.util.ArrayList;
 import java.util.List;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -18,7 +19,7 @@ import android.widget.TextView;
 
 public class TabMenuFragment extends Fragment {
     
-	private View fragmentView;
+    private View fragmentView;
     private PopupWindow searchPopup;
     private List<MenuItem> menuItems;
     private int expandedIndex;
@@ -31,12 +32,17 @@ public class TabMenuFragment extends Fragment {
     }
     
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-    	this.fragmentView = inflater.inflate(R.layout.activity_menutab, container, false);
+        this.fragmentView = inflater.inflate(R.layout.activity_menutab, container, false);
         
         this.menuItems = (List<MenuItem>) getArguments().getSerializable("data");
+        
+        if(this.menuItems == null) {
+            this.menuItems = new ArrayList<MenuItem>();
+        }
+        
         Log.d("tab initialized", "" + this.menuItems.size());
         this.expandedIndex = 0;
         this.scrollViewLayout = (LinearLayout) this.fragmentView.findViewById(R.id.scrollViewLayout);
@@ -50,59 +56,59 @@ public class TabMenuFragment extends Fragment {
     }
     
     public View getExpandedView() {
-    	return this.scrollViewLayout.getChildAt(this.expandedIndex);
+        return this.scrollViewLayout.getChildAt(this.expandedIndex);
     }
     
     private void populateScrollView() {
-    	ViewGroup layout;
-    	
-    	if (this.menuItems.size() > 0) {
-    		layout = getExpandedItemLayout(0, ((MainMenuActivity)getActivity()).getUserOrder());
-        	insertToScrollView(layout, this.scrollViewLayout, 0);
-    	}
+        ViewGroup layout;
+        
+        if (this.menuItems.size() > 0) {
+            layout = getExpandedItemLayout(0, ((MainMenuActivity)getActivity()).getUserOrder());
+            insertToScrollView(layout, this.scrollViewLayout, 0);
+        }
         for (int i = 1; i < this.menuItems.size(); i++) {
-        	layout = getItemLayout(i);
+            layout = getItemLayout(i);
             insertToScrollView(layout, this.scrollViewLayout, i);
         }
     }
     
     private void insertToScrollView(View view, LinearLayout scrollViewLayout, int index) {
-    	LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, 0, 0, 10);
         view.setLayoutParams(params);
-    	scrollViewLayout.addView(view, index);
+        scrollViewLayout.addView(view, index);
     }
     
     public void setItemOrderViews(ViewGroup layout, int count) {
         Button removeButton = ((Button)layout.findViewById(R.id.removeFromOrderButton));
         TextView inOrder = ((TextView)layout.findViewById(R.id.inOrderView));
-    	if (count > 0) {
-        	removeButton.setVisibility(View.VISIBLE);
+        if (count > 0) {
+            removeButton.setVisibility(View.VISIBLE);
             inOrder.setVisibility(View.VISIBLE);
             inOrder.setText(count + " in order");
         } else {
-        	removeButton.setVisibility(View.INVISIBLE);
+            removeButton.setVisibility(View.INVISIBLE);
             inOrder.setVisibility(View.INVISIBLE);
         }
     }
     
     private String parseLikesStr(int likes) {
         if (likes > 999) {
-        	likes = 999;
+            likes = 999;
         }
         String likes_str = Integer.toString(likes);
         String spaces = "";
         for (int i = 0; i < (3 - likes_str.length()) + 1; i++) {
-        	spaces += " ";
+            spaces += " ";
         }
         
         return likes_str + spaces + "people likes this";
     }
     
     private void setItemProperties(ViewGroup layout, MenuItem menuItem, int count) {
-    	((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
-		((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
-		((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
+        ((TextView)layout.findViewById(R.id.itemDescriptionView)).setText(menuItem.getDescription());
+        ((TextView)layout.findViewById(R.id.itemSpicinessView)).setText("Spiciness: " + menuItem.getSpiciness());
+        ((TextView)layout.findViewById(R.id.itemDietsView)).setText("Diets: " + menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
         ((Button)layout.findViewById(R.id.likeButton)).setText(parseLikesStr(menuItem.getLikes()));
@@ -112,39 +118,39 @@ public class TabMenuFragment extends Fragment {
     }
     
     private GridLayout getExpandedItemLayout(int index, UserOrder userOrder) {
-    	MenuItem menuItem = this.menuItems.get(index);
-    	GridLayout layout = (GridLayout)getActivity().getLayoutInflater().inflate(R.layout.largeitem, null);
-		setItemProperties(layout, menuItem, userOrder.getCount(menuItem.getTitle()));
-
-		return layout;
+        MenuItem menuItem = this.menuItems.get(index);
+        GridLayout layout = (GridLayout)getActivity().getLayoutInflater().inflate(R.layout.largeitem, null);
+        setItemProperties(layout, menuItem, userOrder.getCount(menuItem.getTitle()));
+        
+        return layout;
     }
     
     private GridLayout getFurtherExpandedItemLayout(int index, UserOrder userOrder) {
-    	MenuItem menuItem = this.menuItems.get(index);
-    	GridLayout layout = (GridLayout)getActivity().getLayoutInflater().inflate(R.layout.largestitem, null);
-		if (userOrder != null) {
-			setItemProperties(layout, menuItem, userOrder.getCount(menuItem.getTitle()));
-		} else {
-			setItemProperties(layout, menuItem, 0);
-		}
-		
-		return layout;
+        MenuItem menuItem = this.menuItems.get(index);
+        GridLayout layout = (GridLayout)getActivity().getLayoutInflater().inflate(R.layout.largestitem, null);
+        if (userOrder != null) {
+            setItemProperties(layout, menuItem, userOrder.getCount(menuItem.getTitle()));
+        } else {
+            setItemProperties(layout, menuItem, 0);
+        }
+        
+        return layout;
     }
     
     private LinearLayout getItemLayout(int index) {
-    	MenuItem menuItem = this.menuItems.get(index);
-    	LinearLayout layout = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.smallitem, null);
-    	
+        MenuItem menuItem = this.menuItems.get(index);
+        LinearLayout layout = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.smallitem, null);
+        
         ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
         ((TextView)layout.findViewById(R.id.itemDietsView)).setText(menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         
         return layout;
     }
-
+    
     public void searchClicked(final View view) {
         Log.d("TabMenuActivity","Search button clicked.");
-
+        
         this.searchPopup.showAtLocation((View) this.fragmentView.findViewById(R.id.menutab), Gravity.LEFT | Gravity.TOP, 15, 60);
         this.searchPopup.setFocusable(true);
         this.searchPopup.update(570, 900);
@@ -170,15 +176,15 @@ public class TabMenuFragment extends Fragment {
     }
     
     public void itemClicked(final View view, UserOrder userOrder) {
-    	int diff = getExpandedView().getHeight() + view.getHeight() + 10;
-    	int index = scrollViewLayout.indexOfChild(view);
-    	
-		this.scrollView.smoothScrollTo(0, this.scrollViewLayout.getChildAt(index).getBottom() - diff);
-    	this.scrollViewLayout.removeViewAt(this.expandedIndex);
-		insertToScrollView(getItemLayout(this.expandedIndex), this.scrollViewLayout, this.expandedIndex);
-		this.expandedIndex = index;
-		this.scrollViewLayout.removeViewAt(index);
-		insertToScrollView(getExpandedItemLayout(index, userOrder), this.scrollViewLayout, index);
+        int diff = getExpandedView().getHeight() + view.getHeight() + 10;
+        int index = scrollViewLayout.indexOfChild(view);
+        
+        this.scrollView.smoothScrollTo(0, this.scrollViewLayout.getChildAt(index).getBottom() - diff);
+        this.scrollViewLayout.removeViewAt(this.expandedIndex);
+        insertToScrollView(getItemLayout(this.expandedIndex), this.scrollViewLayout, this.expandedIndex);
+        this.expandedIndex = index;
+        this.scrollViewLayout.removeViewAt(index);
+        insertToScrollView(getExpandedItemLayout(index, userOrder), this.scrollViewLayout, index);
     }
     
     public void personalChoicesOpened(final View view, UserOrder userOrder) {
@@ -209,14 +215,14 @@ public class TabMenuFragment extends Fragment {
         userOrder.removeFromOrder(menuItem.getTitle());
         setItemOrderViews(layout, userOrder.getCount(menuItem.getTitle()));
         if (userOrder.isEmpty()) {
-        	((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(false);
+            ((Button)getActivity().findViewById(R.id.myOrderButton)).setEnabled(false);
         }
     }
     
     public void likesClicked(final View view) {
-    	MenuItem item = this.menuItems.get(this.expandedIndex);
-    	item.setLikes(item.getLikes() + 1);
-    	Log.d("likes", "" +item.getLikes());
-    	((Button)view.findViewById(R.id.likeButton)).setText(parseLikesStr(item.getLikes()));
+        MenuItem item = this.menuItems.get(this.expandedIndex);
+        item.setLikes(item.getLikes() + 1);
+        Log.d("likes", "" +item.getLikes());
+        ((Button)view.findViewById(R.id.likeButton)).setText(parseLikesStr(item.getLikes()));
     }
 }

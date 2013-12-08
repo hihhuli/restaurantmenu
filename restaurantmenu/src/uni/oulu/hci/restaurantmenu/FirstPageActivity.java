@@ -16,7 +16,7 @@ public class FirstPageActivity extends Activity {
     
     private HashMap<String, List<MenuItem>> data;
     private UserOrder userOrder;
-	
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -266,21 +266,21 @@ public class FirstPageActivity extends Activity {
         // change text on first page to english
         // change some language selection variable accordingly
         // language selection variable sent as extra in intent to MainMenuActivity
-    	Log.d("FirstPageActivity","English button clicked.");
+        Log.d("FirstPageActivity","English button clicked.");
     }
     
     public void selectFinnishClicked(final View view) {
         // change text on first page to finnish
         // change some language selection variable accordingly
         // language selection variable sent as extra in intent to MainMenuActivity
-    	Log.d("FirstPageActivity","Finnish button clicked.");
+        Log.d("FirstPageActivity","Finnish button clicked.");
     }
     
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-      super.onActivityResult(requestCode, resultCode, data);
-      this.data = (HashMap<String, List<MenuItem>>)data.getSerializableExtra("data");
-      this.userOrder = (UserOrder)data.getSerializableExtra("order");
+        super.onActivityResult(requestCode, resultCode, data);
+        this.data = (HashMap<String, List<MenuItem>>)data.getSerializableExtra("data");
+        this.userOrder = (UserOrder)data.getSerializableExtra("order");
     }
 }

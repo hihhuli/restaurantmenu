@@ -108,7 +108,7 @@ public class MenuDataSource implements Serializable {
     }
     
     public HashMap<String, List<MenuItem>> getMenuItemMap() {
-    	HashMap<String, List<MenuItem>> menuItems = new HashMap<String, List<MenuItem>>();
+        HashMap<String, List<MenuItem>> menuItems = new HashMap<String, List<MenuItem>>();
         
         Cursor cursor = database.query(MySQLiteHelper.TABLE_MENU,
                 allColumns, null, null, null, null, null);
@@ -118,7 +118,7 @@ public class MenuDataSource implements Serializable {
             MenuItem menuItem = cursorToMenuItem(cursor);
             String category = menuItem.getCategory();
             if (!menuItems.containsKey(category)) {
-            	menuItems.put(category, new ArrayList<MenuItem>());
+                menuItems.put(category, new ArrayList<MenuItem>());
             }
             menuItems.get(category).add(menuItem);
             cursor.moveToNext();

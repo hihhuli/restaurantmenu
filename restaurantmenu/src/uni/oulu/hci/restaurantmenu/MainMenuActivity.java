@@ -33,7 +33,7 @@ public class MainMenuActivity extends FragmentActivity {
     private String currentFragmentTag;
     
     @SuppressWarnings("unchecked")
-	@Override
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_menu);
@@ -46,10 +46,10 @@ public class MainMenuActivity extends FragmentActivity {
         this.userOrder = (UserOrder)intent.getSerializableExtra("order");
         createTabHost(titles);
         if (this.userOrder.isEmpty()) {
-        	((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+            ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
         }
         if (this.userOrder.isConfirmedEmpty()) {
-        	((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
+            ((Button)findViewById(R.id.checkoutButton)).setEnabled(false);
         }
     }
     
@@ -61,11 +61,11 @@ public class MainMenuActivity extends FragmentActivity {
     }
     
     public UserOrder getUserOrder() {
-    	return this.userOrder;
+        return this.userOrder;
     }
     
     private void createTabHost(String[] titles) {
-    	final FragmentTabHost tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
+        final FragmentTabHost tabHost = (FragmentTabHost) findViewById(android.R.id.tabhost);
         tabHost.setup(this, getSupportFragmentManager(), R.id.realtabcontent);
         
         for (String title : titles) {
@@ -87,7 +87,7 @@ public class MainMenuActivity extends FragmentActivity {
             /**
              * http://stackoverflow.com/questions/2099959/how-do-i-change-the-background-of-an-android-tab-widget
              */
-        	@Override
+            @Override
             public void onTabChanged(String tabId) {
                 for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++)
                 {
@@ -99,13 +99,13 @@ public class MainMenuActivity extends FragmentActivity {
     }
     
     private List<MenuItem> getMenuItemsByCategory(String title) {
-    	return this.data.get(title);
+        return this.data.get(title);
     }
     
     public void languagesClicked(final View view) {
-    	Intent resultIntent = new Intent();
-    	resultIntent.putExtra("data", (Serializable)this.data);
-    	resultIntent.putExtra("order", (Serializable)this.userOrder);
+        Intent resultIntent = new Intent();
+        resultIntent.putExtra("data", (Serializable)this.data);
+        resultIntent.putExtra("order", (Serializable)this.userOrder);
         setResult(RESULT_OK, resultIntent);
         finish();
     }
@@ -155,13 +155,13 @@ public class MainMenuActivity extends FragmentActivity {
         fragment.setItemOrderViews((ViewGroup)fragment.getExpandedView(), 0);
         this.userOrder.clearWaiting();
         if (this.userOrder.isConfirmedEmpty()) {
-        	((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+            ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
             this.myorderpopup.dismiss();
         } else {
-        	((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
-        	((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
-        	((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
-        	((LinearLayout)popupView.findViewById(R.id.waitingScrollViewLayout)).removeAllViews();
+            ((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+            ((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
+            ((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
+            ((LinearLayout)popupView.findViewById(R.id.waitingScrollViewLayout)).removeAllViews();
         }
     }
     
@@ -185,55 +185,55 @@ public class MainMenuActivity extends FragmentActivity {
     }
     
     public void removeFromWaitingClicked(final View view) {
-    	View parentView = (View) view.getParent().getParent();
-    	LinearLayout layout = (LinearLayout)parentView.getParent();
-    	View popupView = layout.getRootView();
-    	
-    	int index = layout.indexOfChild(parentView);
-    	MenuItem item = this.userOrder.getWaitingItems().get(index);
-    	this.userOrder.removeFromOrder(index);
-    	layout.removeView(parentView);
-    	((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
-    	
-    	TabMenuFragment fragment = getCurrentFragment();
+        View parentView = (View) view.getParent().getParent();
+        LinearLayout layout = (LinearLayout)parentView.getParent();
+        View popupView = layout.getRootView();
+        
+        int index = layout.indexOfChild(parentView);
+        MenuItem item = this.userOrder.getWaitingItems().get(index);
+        this.userOrder.removeFromOrder(index);
+        layout.removeView(parentView);
+        ((TextView)popupView.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
+        
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.setItemOrderViews((ViewGroup)fragment.getExpandedView(), this.userOrder.getCount(item.getTitle()));
-    	
-    	if (layout.getChildCount() == 0 && this.userOrder.isConfirmedEmpty()) {
-    		((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
-    		this.myorderpopup.dismiss();
-    	} else if (layout.getChildCount() == 0) {
-    		((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
-    		((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
-    	}
+        
+        if (layout.getChildCount() == 0 && this.userOrder.isConfirmedEmpty()) {
+            ((Button)findViewById(R.id.myOrderButton)).setEnabled(false);
+            this.myorderpopup.dismiss();
+        } else if (layout.getChildCount() == 0) {
+            ((Button)popupView.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+            ((Button)popupView.findViewById(R.id.clearAllButton)).setEnabled(false);
+        }
     }
     
     private void populateOrderedItems(List<MenuItem> items, LinearLayout scrollViewLayout, int layoutId) {
-    	LinearLayout layout;
-    	for (MenuItem item : items) {
-	    	layout = (LinearLayout)getLayoutInflater().inflate(layoutId, null);
-	        ((TextView)layout.findViewById(R.id.itemTitleView)).setText(item.getTitle());
-	        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(item.getPrice()) + " €");
-	        scrollViewLayout.addView(layout);
-	    }
+        LinearLayout layout;
+        for (MenuItem item : items) {
+            layout = (LinearLayout)getLayoutInflater().inflate(layoutId, null);
+            ((TextView)layout.findViewById(R.id.itemTitleView)).setText(item.getTitle());
+            ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(item.getPrice()) + " €");
+            scrollViewLayout.addView(layout);
+        }
     }
     
     private void populateMyOrderView(View view) {
-    	LinearLayout waitingScrLayout =(LinearLayout)view.findViewById(R.id.waitingScrollViewLayout);
-    	
-    	if (!this.userOrder.isConfirmedEmpty()) {
-        	LinearLayout confirmedScrLayout = (LinearLayout)view.findViewById(R.id.confirmedScrollViewLayout);
-        	((View)view.findViewById(R.id.confirmedView)).setVisibility(View.VISIBLE);
-        	((View)view.findViewById(R.id.confirmedSeparator)).setVisibility(View.VISIBLE);
-        	((View)view.findViewById(R.id.confirmedScrollView)).setVisibility(View.VISIBLE);
-    		populateOrderedItems(this.userOrder.getConfirmedItems(), confirmedScrLayout, R.layout.confirmed_item);
-    	}
-    	if (!this.userOrder.isWaitingEmpty()) {
-    		populateOrderedItems(this.userOrder.getWaitingItems(), waitingScrLayout, R.layout.waiting_item);
-    	} else {
-    		((Button)view.findViewById(R.id.confirmOrderButton)).setEnabled(false);
-    		((Button)view.findViewById(R.id.clearAllButton)).setEnabled(false);
-    	}
-    	((TextView)view.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
+        LinearLayout waitingScrLayout =(LinearLayout)view.findViewById(R.id.waitingScrollViewLayout);
+        
+        if (!this.userOrder.isConfirmedEmpty()) {
+            LinearLayout confirmedScrLayout = (LinearLayout)view.findViewById(R.id.confirmedScrollViewLayout);
+            ((View)view.findViewById(R.id.confirmedView)).setVisibility(View.VISIBLE);
+            ((View)view.findViewById(R.id.confirmedSeparator)).setVisibility(View.VISIBLE);
+            ((View)view.findViewById(R.id.confirmedScrollView)).setVisibility(View.VISIBLE);
+            populateOrderedItems(this.userOrder.getConfirmedItems(), confirmedScrLayout, R.layout.confirmed_item);
+        }
+        if (!this.userOrder.isWaitingEmpty()) {
+            populateOrderedItems(this.userOrder.getWaitingItems(), waitingScrLayout, R.layout.waiting_item);
+        } else {
+            ((Button)view.findViewById(R.id.confirmOrderButton)).setEnabled(false);
+            ((Button)view.findViewById(R.id.clearAllButton)).setEnabled(false);
+        }
+        ((TextView)view.findViewById(R.id.totalPriceView)).setText(this.userOrder.calculateOrderSum() + " €");
     }
     
     public void confirmationOkClicked(final View view) {
@@ -244,7 +244,7 @@ public class MainMenuActivity extends FragmentActivity {
     }
     
     public TabMenuFragment getCurrentFragment() {
-    	return (TabMenuFragment)getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
+        return (TabMenuFragment)getSupportFragmentManager().findFragmentByTag(currentFragmentTag);
     }
     
     public void searchClicked(final View view) {
@@ -268,35 +268,35 @@ public class MainMenuActivity extends FragmentActivity {
     }
     
     public void itemClicked(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.itemClicked(view, this.userOrder);
     }
     
     public void personalChoicesOpened(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.personalChoicesOpened(view, this.userOrder);
     }
     
     public void personalChoicesClosed(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.personalChoicesClosed(view, this.userOrder);
     }
     
     public void addToOrderClicked(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.addToOrderClicked(view, this.userOrder);
     }
     
     public void removeFromOrderClicked(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
+        TabMenuFragment fragment = getCurrentFragment();
         fragment.removeFromOrderClicked(view, this.userOrder);
     }
     
     public void likesClicked(final View view) {
-    	TabMenuFragment fragment = getCurrentFragment();
-    	fragment.likesClicked(view);
+        TabMenuFragment fragment = getCurrentFragment();
+        fragment.likesClicked(view);
     }
-
+    
     public void callWaiterClicked(final View view) {
         // would send a message to a waiter to come by, not implemented here
         // feedback to tell that a request was sent
