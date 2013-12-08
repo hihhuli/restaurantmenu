@@ -141,7 +141,7 @@ public class TabMenuFragment extends Fragment {
         MenuItem menuItem = this.menuItems.get(index);
         LinearLayout layout = (LinearLayout)getActivity().getLayoutInflater().inflate(R.layout.smallitem, null);
         
-        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " €");
+        ((TextView)layout.findViewById(R.id.itemPriceView)).setText(Double.toString(menuItem.getPrice()) + " e");
         ((TextView)layout.findViewById(R.id.itemDietsView)).setText(menuItem.getDiets());
         ((TextView)layout.findViewById(R.id.itemTitleView)).setText(menuItem.getTitle());
         
