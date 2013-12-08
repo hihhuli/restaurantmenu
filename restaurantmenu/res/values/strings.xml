@@ -65,8 +65,8 @@
     <string name="search_with_colon">Search:</string>
     <string name="max_price">Max price:</string>
     <string name="price_val">100 e</string>
-    <string name="max_likes">Max likes:</string>
-    <string name="likes_val">50</string>
+    <string name="min_likes">Min likes:</string>
+    <string name="likes_val">0</string>
     <string name="filter_diet">Filter by diet:</string>
     <string name="dairy_free">Dairy-free</string>
     <string name="lactose_free">Lactose-free</string>
