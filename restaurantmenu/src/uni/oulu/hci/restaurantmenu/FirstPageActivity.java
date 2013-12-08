@@ -280,7 +280,9 @@ public class FirstPageActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        this.data = (HashMap<String, List<MenuItem>>)data.getSerializableExtra("data");
-        this.userOrder = (UserOrder)data.getSerializableExtra("order");
+        if(data != null) {
+            this.data = (HashMap<String, List<MenuItem>>)data.getSerializableExtra("data");
+            this.userOrder = (UserOrder)data.getSerializableExtra("order");
+        }
     }
 }
